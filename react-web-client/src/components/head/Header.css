@@ -1,0 +1,127 @@
+.header {
+    background-color: rgb(255, 251, 217) !important;
+    grid-area: h;
+    background: green;
+
+  }
+  
+  .header img {
+    margin: 5px 0 5px 20px;
+    width: 150px;
+  }
+
+.header-content {
+    display: grid;
+
+    grid-template-areas:
+    "titleBar"
+    "searchBar"
+    "navBar";
+    grid-template-rows: 30px 90px 50px;
+    /* grid-template-columns: 1fr; */
+}
+
+.title-bar {
+    grid-area: titleBar;
+    background: rgb(1, 100, 1);
+    border-radius: 4px;
+    margin: 0 2px 0 2px;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
+    text-align: right;
+}
+
+.search-bar {
+    grid-area: searchBar;
+
+    display: grid;
+
+    grid-template-areas:
+    "logo search";
+    grid-template-rows: 90px;
+    grid-template-columns: 2fr 10fr;
+
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
+    margin: 1px 10px 0 10px;
+}
+
+.search {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.search input {
+    margin: 0 5px 0 5px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+.search .input-btn {
+    width: 80px;
+    border-width: 0px;
+    margin: 2px 5px 0 3px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
+}
+
+.nav-bar {
+    grid-area: navBar;
+    background: rgb(1, 100, 1);
+    border-radius: 4px;
+    margin: 0 2px 0 2px;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
+    text-align: center;
+    align-self: center;
+    height: 50px;
+} 
+
+.title-btn {
+    margin: 5px 5px 0 3px;
+    position: relative;
+    min-width: min-content;
+    padding: 3px 20px 3px 20px ;
+  
+    border-width: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    
+    background-color: white;
+    color: black;
+    
+    transition: background-color .3s;
+}
+  
+.title-btn:hover, .title-btn:focus {
+    background-color: #9aff6e;
+  }
+  
+  .title-btn > * {
+    position: relative;
+  }
+  
+  .title-btn:before {
+    content: "";
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    padding-top: 0;
+      
+    border-radius: 100%;
+    
+    background-color: rgba(236, 240, 241, .3);
+  }
+  
+  .title-btn:active:before {
+    width: 120%;
+    padding-top: 120%;
+    
+    transition: width .2s ease-out, padding-top .2s ease-out;
+  }
+  
+  /* Styles, not important */
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }

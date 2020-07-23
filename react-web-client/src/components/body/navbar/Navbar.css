@@ -1,0 +1,17 @@
+.nav {
+    grid-area: n;
+    background:  rgba(67, 184, 0, 0.6);
+    margin: 3px 0 0 3px;
+    border-radius: 5px;  
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
+  }
+
+  .div {
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .some-title {
+      font-weight: 700;
+      font-style: normal;
+  }
