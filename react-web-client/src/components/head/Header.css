@@ -1,8 +1,6 @@
 .header {
     background-color: rgb(255, 251, 217) !important;
     grid-area: h;
-    background: green;
-
   }
   
   .header img {
@@ -23,7 +21,7 @@
 
 .title-bar {
     grid-area: titleBar;
-    background: rgb(1, 100, 1);
+    background: rgb(317, 142, 70);
     border-radius: 4px;
     margin: 0 2px 0 2px;
     border-radius: 5px;
@@ -66,13 +64,13 @@
 
 .nav-bar {
     grid-area: navBar;
-    background: rgb(1, 100, 1);
+    background: rgb(317, 142, 70);
     border-radius: 4px;
     margin: 0 2px 0 2px;
     border-radius: 5px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
     text-align: center;
-    align-self: center;
+    align-self: normal;
     height: 50px;
 } 
 
@@ -80,20 +78,20 @@
     margin: 5px 5px 0 3px;
     position: relative;
     min-width: min-content;
-    padding: 3px 20px 3px 20px ;
-  
+    padding: 2px 15px 2px 15px ;
+    text-decoration: none !important;
     border-width: 0;
     border-radius: 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
     
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.85);
     color: black;
     
     transition: background-color .3s;
 }
   
 .title-btn:hover, .title-btn:focus {
-    background-color: #9aff6e;
+    background-color: rgba(317, 190, 70, .6);
   }
   
   .title-btn > * {
@@ -125,3 +123,67 @@
   *, *:before, *:after {
     box-sizing: border-box;
   }
+
+  .title-btn a {
+    text-decoration: none;
+  }
+
+  .title-btn:active {
+    color: inherit;
+  }
+
+  
+.nav-btn {
+  margin: 10px 5px 0 3px;
+  position: inherit;
+  min-width: min-content;
+  padding: 5px 20px 5px 20px ;
+  text-decoration: none !important;
+  border-width: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  
+  background-color: rgba(255, 255, 255, 0.85);
+
+  color: black;
+  
+  transition: background-color .3s;
+}
+
+.nav-btn:hover, .nav-btn:focus {
+  background-color: rgba(317, 190, 70, .6);
+}
+
+.nav-btn > * {
+  position: relative;
+}
+
+.nav-btn:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+}
+
+.nav-btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+/* Styles, not important */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.nav-btn a {
+  text-decoration: none;
+}

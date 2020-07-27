@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import cs from './Content.module.css';
-import { BrowserRouter, Route } from 'react-router-dom';
-import News from './news/News'
-import Bestsellers from './bestsellers/Bestsellers'
+import React from 'react';
+import cs from './../Content.module.css';
 
-
-const Content = () => {
-
+const News = () => {
     return (
 
             <div className={cs.content}>
-                <Route path='/bestsellers' component={News} />
-                <Route path='/catalog' component={Bestsellers} />
-                <div className="item">
+
+                <div className={cs.item}>
                     <img src='https://eduru.ru/media/2019/07/23/1263929612/_Pngtree_open_book_3298621.png' />
                 </div>
                 {/* <div className="item">
@@ -36,4 +30,4 @@ const Content = () => {
     );
 }
 
-export default Content;
+export default News;
