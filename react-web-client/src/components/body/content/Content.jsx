@@ -19,7 +19,7 @@ const Content = (props) => {
             <Route path='/catalog' render={() => <Bestsellers filter="catalog"books={props.content.books}  /> } />
             <Route path='/addBook' render={() => <Temp /> } />
             <Route path='/addPainter' render={() => <Temp /> } />
-            <Route path='/addPainterStyle' render={() => <AddPainterStyle addPainterStyle={props.addPainterStyle} /> } />
+            <Route path='/addPainterStyle' render={() => <AddPainterStyle setPainterStyle={props.setPainterStyle} /> } />
         </div>
     );
 }
