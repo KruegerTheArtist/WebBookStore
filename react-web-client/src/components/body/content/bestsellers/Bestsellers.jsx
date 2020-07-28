@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
 import Book from "../models/Book";
 import "./Bestsellers.css";
-import * as axios from "axios";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -13,9 +12,6 @@ const breakPoints = [
 ];
 
 const Bestsellers = (props) => {
-  axios.get('https://localhost:44394/api/Book/GetBooks/take/3/skip/0').then(response => {
-  })
-
   let newArray = [];
   if (props.books) {
     newArray = props.books.map((b) => {
