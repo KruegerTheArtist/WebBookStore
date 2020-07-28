@@ -11,23 +11,33 @@
     "second"
     "third";
     grid-template-rows: 100px 100px 100px;
-    /* grid-template-columns: 1fr; */
-
 }
 
 .first-line {
     grid-area: first;
+    margin: 10px 15px 0 15px;
+    padding: 0 10px 5px 10px;
 
+    border-radius: 5px;  
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
 }
 
 .second-line {
     grid-area: second;
-    
+    margin: 10px 15px 0 15px;
+    padding: 0 10px 5px 10px;
+
+    border-radius: 5px;  
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
 }
 
 .third-line {
     grid-area: third;
-    
+    margin: 10px 15px 0 15px;
+    padding: 0 10px 5px 10px;
+
+    border-radius: 5px;  
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .6);
 }
 
 .item img {

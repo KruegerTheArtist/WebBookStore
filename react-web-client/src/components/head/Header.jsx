@@ -11,6 +11,12 @@ const Header = () => {
             <div className="header-content">
                 <div className="title-bar">
                     <button className="title-btn" >
+                        <NavLink to="/addBook">Add book</NavLink>
+                    </button>
+                    <button className="title-btn" >
+                        <NavLink to="/addPainter">Add painter</NavLink>
+                    </button>
+                    <button className="title-btn" >
                         <NavLink to="/contactUs">Contact Us</NavLink>
                     </button>
                     <button className="title-btn" >
