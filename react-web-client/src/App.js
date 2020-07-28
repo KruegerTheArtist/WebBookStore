@@ -4,13 +4,16 @@ import './App.css';
 import Header from './components/head/Header';
 import Navbar from './components/body/navbar/Navbar';
 import Content from './components/body/content/Content';
+import { BrowserRouter } from 'react-router-dom';
 
 const Test = () => {
   return (
     <div className="app-wrapper">
-      <Header />
-      <Navbar />
-      <Content />
+      <BrowserRouter>
+        <Header />
+        <Navbar />
+        <Content />
+      </BrowserRouter>
     </div>
   );
 }

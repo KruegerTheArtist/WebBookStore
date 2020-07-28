@@ -1,0 +1,15 @@
+.book {
+    width: 200px;
+    height: 330px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.book h3 {
+    font-weight: 700;
+    text-align: center;
+}
+
+.book span {
+    font-weight: 700;
+}

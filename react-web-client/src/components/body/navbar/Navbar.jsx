@@ -6,36 +6,43 @@ const Navbar = () => {
         <nav className="nav">
             <div className="div">
                 <a className="some-title">Some filter by genre</a>
-                <div>
-                    <a style={{marginLeft:10+'px'}}>Comedy</a>
-                    <a style={{marginLeft:10+'px'}}>Horror</a>
-                    <a style={{marginLeft:10+'px'}}>Adventure</a>
-                    <a style={{marginLeft:10+'px'}}>Fantastic</a>
-                </div>
+                <br></br>
+                <select>
+                    <option value="comedy">Comedy</option>
+                    <option value="horror">Horror</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="fantastic">Fantastic</option>
+                </select>
             </div>
             <div className="div">
                 <a className="some-title">Some filter by author</a>
-                <div>
-                    <a style={{marginLeft:10+'px'}}>Dostoevsky</a>
-                    <a style={{marginLeft:10+'px'}}>Tolstoy</a>
-                    <a style={{marginLeft:10+'px'}}>Pushkin</a>
-                </div>
+                <br></br>
+                <select>
+                    <option value="dostoevsky">Dostoevsky</option>
+                    <option value="tolstoy">Tolstoy</option>
+                    <option value="pushkin">Pushkin</option>
+                    <option value="nikitin">Nikitin</option>
+                </select>
             </div>
             <div className="div">
                 <a className="some-title">Some filter by year</a>
-                <div>
-                    <a style={{marginLeft:10+'px'}}>1980-1990</a>
-                    <a style={{marginLeft:10+'px'}}>1991-2000</a>
-                    <a style={{marginLeft:10+'px'}}>2000 - our time</a>
-                </div>
+                <br></br>
+                <select>
+                    <option value="1980-1990">1980-1990</option>
+                    <option value="1991-2000">1991-2000</option>
+                    <option value="2000-2010">2000-2010</option>
+                    <option value="2010-our_time">2000-our time</option>
+                </select>
             </div>
             <div className="div">
                 <a className="some-title">Some filter by sales</a>
-                <div>
-                    <a style={{marginLeft:10+'px'}}>Most popular</a>
-                    <a style={{marginLeft:10+'px'}}>Bad books</a>
-                    <a style={{marginLeft:10+'px'}}>Nor ordinary books</a>
-                </div>
+                <br></br>
+                <select className="some-select">
+                    <option value="mostPopular">Most popular</option>
+                    <option value="badBooks">Bad books</option>
+                    <option value="notOrdinaryBooks">Not ordinary books</option>
+                    <option value="rareBooks">Rare books</option>
+                </select>
             </div>
         </nav>
     );
