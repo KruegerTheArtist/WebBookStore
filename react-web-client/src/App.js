@@ -1,18 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/head/Header';
 import Navbar from './components/body/navbar/Navbar';
 import Content from './components/body/content/Content';
 import { BrowserRouter } from 'react-router-dom';
 
-const Test = () => {
+const Test = (props) => {
   return (
     <div className="app-wrapper">
       <BrowserRouter>
         <Header />
         <Navbar />
-        <Content />
+        <Content content={props.state.contentPage} />
       </BrowserRouter>
     </div>
   );
