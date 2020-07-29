@@ -10,14 +10,8 @@ const Header = () => {
         <header className="header">
             <div className="header-content">
                 <div className="title-bar">
-                <button className="title-btn" >
-                        <NavLink to="/addPainterStyle">Add painter style</NavLink>
-                    </button>
                     <button className="title-btn" >
-                        <NavLink to="/addBook">Add book</NavLink>
-                    </button>
-                    <button className="title-btn" >
-                        <NavLink to="/addPainter">Add painter</NavLink>
+                        <NavLink to="/adminPanel">Admin panel</NavLink>
                     </button>
                     <button className="title-btn" >
                         <NavLink to="/contactUs">Contact Us</NavLink>
