@@ -1,3 +1,6 @@
+import { rerenderEntireTree } from "../render";
+import * as axios from "axios";
+
 let state = {
     contentPage: {
         books: [
@@ -13,8 +16,25 @@ let state = {
             { id: 10, name: 'Ninja Angular', url: 'http://www.angularjs4u.com/wp-content/uploads/2017/03/Become-a-ninja-with-Angular-285x300.png', price: 164 },
             { id: 11, name: 'JDMWay', url: 'https://i.pinimg.com/236x/d2/ea/d0/d2ead01e2b26a4c3d00974048f7d16d4--japanese-graphic-design-japanese-art.jpg', price: 256 },
             { id: 12, name: 'Kokimoto', url: 'https://i.pinimg.com/236x/5d/80/a6/5d80a66582a5fd10cc59289f986a942a--book-design-cover-design.jpg', price: 258 }
-        ]
+        ],
+        painterStyles: []
     }
-} 
+};
+
+export let setPainterStyle = (painterStyle) => {
+    state.contentPage.painterStyles.push({ id: newGuid(), name: painterStyle });
+    axios.post('https://localhost:44394/api/PainterStyle', { id: newGuid(), name: painterStyle }).then(response => {
+        console.log('response', response);
+    })
+
+    rerenderEntireTree(state);
+}
+
+let newGuid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 
 export default state;
