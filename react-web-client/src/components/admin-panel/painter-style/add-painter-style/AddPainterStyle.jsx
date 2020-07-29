@@ -3,7 +3,8 @@ import "./AddPainterStyle.css";
 
 const AddPainterStyle = (props) => {
     let name1 = React.createRef();
-
+    console.log('props111', props);
+    
     let add = () => {
         let text = name1.current.value;
         props.setPainterStyle(text);

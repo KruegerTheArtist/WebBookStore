@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { setPainterStyle, initializeData } from './redux/state';
+import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} setPainterStyle={setPainterStyle} />
+      <App state={state} setPainterStyle={setPainterStyle} deletePainterStyle={deletePainterStyle} updatePainterStyle={updatePainterStyle}/>
     </React.StrictMode>,
     document.getElementById('root')
   );

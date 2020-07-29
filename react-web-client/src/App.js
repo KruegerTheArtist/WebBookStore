@@ -11,7 +11,7 @@ const Test = (props) => {
       <BrowserRouter>
         <Header />
         <Navbar />
-        <Content content={props.state.contentPage} setPainterStyle={props.setPainterStyle}/>
+        <Content content={props.state.contentPage} setPainterStyle={props.setPainterStyle} deletePainterStyle={props.deletePainterStyle} updatePainterStyle={props.updatePainterStyle}/>
       </BrowserRouter>
     </div>
   );
