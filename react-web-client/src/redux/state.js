@@ -21,13 +21,26 @@ let state = {
     }
 };
 
+export let initializeData = () => {
+    getPainterStyle();
+}
+
 export let setPainterStyle = (painterStyle) => {
     state.contentPage.painterStyles.push({ id: newGuid(), name: painterStyle });
     axios.post('https://localhost:44394/api/PainterStyle', { id: newGuid(), name: painterStyle }).then(response => {
         console.log('response', response);
     })
 
+    getPainterStyle();
     rerenderEntireTree(state);
+}
+
+export let getPainterStyle = () => {
+    axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles').then(response => {
+        console.log('response', response);
+        state.contentPage.painterStyles = response.data;
+    })
+    return state.contentPage.painterStyles;
 }
 
 let newGuid = () => {
