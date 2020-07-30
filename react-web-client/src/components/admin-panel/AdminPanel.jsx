@@ -10,7 +10,7 @@ const AdminPanel = (props) => {
 
         <div className={cs.content}>
             <PainterStyleForm deletePainterStyle={props.props.deletePainterStyle}  updatePainterStyle={props.props.updatePainterStyle} setPainterStyle={props.props.setPainterStyle} painterStyles={props.props.content} />
-            <PainterForm />
+            <PainterForm painterMethods={props.props.painterMethods}/>
 
         </div>
     );

@@ -60,6 +60,54 @@ export let updatePainterStyle = (id, name) => {
     initializeData();
 }
 
+export let setPainter = (name, age, description, styleName) => {
+    let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+    console.log('styleId', styleId);
+    
+    let painter = {
+        id: newGuid(),
+        name,
+        age,
+        description,
+        styleId: styleId,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.post('https://localhost:44394/api/Painter', painter).then(response => {
+        console.log('set', response);
+    })
+
+    getPainter();
+    rerenderEntireTree(state);
+}
+
+export let getPainter = () => {
+    axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles').then(response => {
+        console.log('get', response);
+        state.contentPage.painterStyles = response.data;
+    })
+    return state.contentPage.painterStyles;
+}
+
+export let deletePainter = (id) => {
+    axios.delete('https://localhost:44394/api/PainterStyle/' + id).then(response => {
+        console.log('delete', response);
+    })
+
+    // initializeData();
+}
+
+export let updatePainter = (id, name) => {
+    axios.put('https://localhost:44394/api/PainterStyle/',{id: id, name: name}).then(response => {
+        console.log('update', response);
+    })
+
+    // initializeData();
+}
+
+
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);

@@ -6,13 +6,14 @@ import UpdatePainter from './update-painter/UpdatePainter';
 
 
 const PainterForm = (props) => {
+    console.log('PAAAA', props);
     
     return (
 
         <div className={cs.content}>
-            <AddPainter/>
-            <DeletePainter/>
-            <UpdatePainter/>
+            <AddPainter setPainter={props}/>
+            <DeletePainter deletePainter={props}/>
+            <UpdatePainter updatePainter={props}/>
         </div>
     );
 }
