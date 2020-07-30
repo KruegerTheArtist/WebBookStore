@@ -17,12 +17,17 @@ let state = {
             { id: 11, name: 'JDMWay', url: 'https://i.pinimg.com/236x/d2/ea/d0/d2ead01e2b26a4c3d00974048f7d16d4--japanese-graphic-design-japanese-art.jpg', price: 256 },
             { id: 12, name: 'Kokimoto', url: 'https://i.pinimg.com/236x/5d/80/a6/5d80a66582a5fd10cc59289f986a942a--book-design-cover-design.jpg', price: 258 }
         ],
-        painterStyles: []
+        painterStyles: [],
+        painters: [
+            {id:'222', name:'Uou'}
+        ]
     }
 };
 
 export let initializeData = () => {
     getPainterStyle();
+    getPainterByCount(15);
+
     rerenderEntireTree(state);
 }
 
@@ -78,20 +83,22 @@ export let setPainter = (name, age, description, styleName) => {
         console.log('set', response);
     })
 
-    getPainter();
+    getPainterByCount(15);
     rerenderEntireTree(state);
 }
 
-export let getPainter = () => {
-    axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles').then(response => {
+export let getPainterByCount = (count) => {
+    axios.get('https://localhost:44394/api/Painter/GetPainters/take/'+ count + '/skip/0').then(response => {
         console.log('get', response);
-        state.contentPage.painterStyles = response.data;
+        state.contentPage.painters = response.data.previewPainters;
     })
     return state.contentPage.painterStyles;
 }
 
-export let deletePainter = (id) => {
-    axios.delete('https://localhost:44394/api/PainterStyle/' + id).then(response => {
+export let deletePainter = (name) => {
+    let painterId = state.contentPage.painters.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/Painter/' + painterId).then(response => {
         console.log('delete', response);
     })
 
