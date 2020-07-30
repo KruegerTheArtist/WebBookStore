@@ -101,8 +101,7 @@ export let deletePainter = (name) => {
     axios.delete('https://localhost:44394/api/Painter/' + painterId).then(response => {
         console.log('delete', response);
     })
-
-    // initializeData();
+    initializeData();
 }
 
 export let updatePainter = (id, name) => {
