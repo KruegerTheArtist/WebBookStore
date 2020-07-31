@@ -17,12 +17,15 @@ let state = {
             { id: 11, name: 'JDMWay', url: 'https://i.pinimg.com/236x/d2/ea/d0/d2ead01e2b26a4c3d00974048f7d16d4--japanese-graphic-design-japanese-art.jpg', price: 256 },
             { id: 12, name: 'Kokimoto', url: 'https://i.pinimg.com/236x/5d/80/a6/5d80a66582a5fd10cc59289f986a942a--book-design-cover-design.jpg', price: 258 }
         ],
-        painterStyles: []
+        painterStyles: [],
+        painters: []
     }
 };
 
 export let initializeData = () => {
     getPainterStyle();
+    getPainterByCount(15);
+
     rerenderEntireTree(state);
 }
 
@@ -59,6 +62,65 @@ export let updatePainterStyle = (id, name) => {
 
     initializeData();
 }
+
+export let setPainter = (name, age, description, styleName) => {
+    let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+    
+    let painter = {
+        id: newGuid(),
+        name,
+        age,
+        description,
+        styleId: styleId,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.post('https://localhost:44394/api/Painter', painter).then(response => {
+        console.log('set', response);
+    })
+
+    getPainterByCount(15);
+    rerenderEntireTree(state);
+}
+
+export let getPainterByCount = (count) => {
+    axios.get('https://localhost:44394/api/Painter/GetPainters/take/'+ count + '/skip/0').then(response => {
+        console.log('get', response);
+        state.contentPage.painters = response.data.previewPainters;
+    })
+    return state.contentPage.painterStyles;
+}
+
+export let deletePainter = (name) => {
+    let painterId = state.contentPage.painters.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/Painter/' + painterId).then(response => {
+        console.log('delete', response);
+    })
+    initializeData();
+}
+
+export let updatePainter = (oldName, name, age, description, styleName) => {
+    let oldPainter = state.contentPage.painters.find(ps => ps.name === oldName)
+    let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+
+    let painter = {
+        id: oldPainter.id,
+        name,
+        age,
+        description,
+        styleId: styleId,
+        booksIds: oldPainter.booksIds
+    }
+    axios.put('https://localhost:44394/api/Painter/', painter).then(response => {
+        console.log('update', response);
+    })
+
+    initializeData();
+}
+
+
 
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
