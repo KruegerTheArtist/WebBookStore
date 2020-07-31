@@ -18,9 +18,7 @@ let state = {
             { id: 12, name: 'Kokimoto', url: 'https://i.pinimg.com/236x/5d/80/a6/5d80a66582a5fd10cc59289f986a942a--book-design-cover-design.jpg', price: 258 }
         ],
         painterStyles: [],
-        painters: [
-            {id:'222', name:'Uou'}
-        ]
+        painters: []
     }
 };
 
@@ -67,7 +65,6 @@ export let updatePainterStyle = (id, name) => {
 
 export let setPainter = (name, age, description, styleName) => {
     let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
-    console.log('styleId', styleId);
     
     let painter = {
         id: newGuid(),
@@ -104,12 +101,23 @@ export let deletePainter = (name) => {
     initializeData();
 }
 
-export let updatePainter = (id, name) => {
-    axios.put('https://localhost:44394/api/PainterStyle/',{id: id, name: name}).then(response => {
+export let updatePainter = (oldName, name, age, description, styleName) => {
+    let oldPainter = state.contentPage.painters.find(ps => ps.name === oldName)
+    let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+
+    let painter = {
+        id: oldPainter.id,
+        name,
+        age,
+        description,
+        styleId: styleId,
+        booksIds: oldPainter.booksIds
+    }
+    axios.put('https://localhost:44394/api/Painter/', painter).then(response => {
         console.log('update', response);
     })
 
-    // initializeData();
+    initializeData();
 }
 
 
