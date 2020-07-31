@@ -120,6 +120,57 @@ export let updatePainter = (oldName, name, age, description, styleName) => {
     initializeData();
 }
 
+export let addPublisher = (name) => {
+    let publisher = {
+        id: newGuid(),
+        name,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.post('https://localhost:44394/api/Publisher', publisher).then(response => {
+        console.log('set', response);
+    })
+
+    // getPainterByCount(15);
+    rerenderEntireTree(state);
+}
+
+// export let getPainterByCount = (count) => {
+//     axios.get('https://localhost:44394/api/Painter/GetPainters/take/'+ count + '/skip/0').then(response => {
+//         console.log('get', response);
+//         state.contentPage.painters = response.data.previewPainters;
+//     })
+//     return state.contentPage.painterStyles;
+// }
+
+// export let deletePainter = (name) => {
+//     let painterId = state.contentPage.painters.find(ps => ps.name === name).id
+
+//     axios.delete('https://localhost:44394/api/Painter/' + painterId).then(response => {
+//         console.log('delete', response);
+//     })
+//     initializeData();
+// }
+
+// export let updatePainter = (oldName, name, age, description, styleName) => {
+//     let oldPainter = state.contentPage.painters.find(ps => ps.name === oldName)
+//     let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+
+//     let painter = {
+//         id: oldPainter.id,
+//         name,
+//         age,
+//         description,
+//         styleId: styleId,
+//         booksIds: oldPainter.booksIds
+//     }
+//     axios.put('https://localhost:44394/api/Painter/', painter).then(response => {
+//         console.log('update', response);
+//     })
+
+//     initializeData();
+// }
 
 
 let newGuid = () => {
