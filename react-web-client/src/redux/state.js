@@ -154,24 +154,21 @@ export let getPublishersByCount = (count) => {
     return state.contentPage.publishers;
 }
 
-// export let updatePainter = (oldName, name, age, description, styleName) => {
-//     let oldPainter = state.contentPage.painters.find(ps => ps.name === oldName)
-//     let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+export let updatePublisher = (oldName, name) => {
+    let publisherId = state.contentPage.publishers.find(ps => ps.name === oldName).id
+    let publisher = {
+        id: publisherId,
+        name,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.put('https://localhost:44394/api/Publisher/', publisher).then(response => {
+        console.log('update', response);
+    })
 
-//     let painter = {
-//         id: oldPainter.id,
-//         name,
-//         age,
-//         description,
-//         styleId: styleId,
-//         booksIds: oldPainter.booksIds
-//     }
-//     axios.put('https://localhost:44394/api/Painter/', painter).then(response => {
-//         console.log('update', response);
-//     })
-
-//     initializeData();
-// }
+    initializeData();
+}
 
 
 let newGuid = () => {

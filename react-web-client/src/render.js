@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, setPainter, deletePainter, updatePainter, getPainterByCount, addPublisher, getPublishersByCount, deletePublisher } from './redux/state';
+import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, setPainter, deletePainter, updatePainter, getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
   let painterMethods = {
@@ -16,7 +16,8 @@ export let rerenderEntireTree = (state) => {
   let publisherMethods = {
     addPublisher,
     getPublishersByCount,
-    deletePublisher
+    deletePublisher,
+    updatePublisher
   }
   ReactDOM.render(
     <React.StrictMode>
