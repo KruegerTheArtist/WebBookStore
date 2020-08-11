@@ -40,7 +40,7 @@ export let setPainterStyle = (painterStyle) => {
     })
 
     getPainterStyle();
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 export let getPainterStyle = () => {
@@ -86,7 +86,7 @@ export let setPainter = (name, age, description, styleName) => {
     })
 
     getPainterByCount(15);
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 export let getPainterByCount = (count) => {
@@ -139,7 +139,7 @@ export let addPublisher = (name) => {
     })
 
     getPublishersByCount(10);
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 export let deletePublisher = (name) => {
@@ -182,6 +182,19 @@ export let getCoverTypes = () => {
         state.contentPage.coverTypes = response.data;
     })
     return state.contentPage.coverTypes;
+}
+
+export let addCoverType = (name) => {
+    let сoverType = {
+        id: newGuid(),
+        name
+      }
+    axios.post('https://localhost:44394/api/CoverType', сoverType).then(response => {
+        console.log('set', response);
+    })
+
+    getCoverTypes(10);
+    // rerenderEntireTree(state);
 }
 
 let newGuid = () => {

@@ -1,14 +1,14 @@
 import React from 'react';
 import cs from './../../body/content/Content.module.css';
+import AddCoverType from './add-cover-type/AddCoverType';
 
 
 const CoverTypeForm = (props) => {
-    console.log('PAAAA', props);
     
     return (
 
         <div className={cs.content}>
-            {/* <AddPainter setPainter={props}/> */}
+            <AddCoverType addCoverType={props}/>
             {/* <DeletePainter deletePainter={props}/> */}
             {/* <UpdatePainter updatePainter={props}/> */}
         </div>
