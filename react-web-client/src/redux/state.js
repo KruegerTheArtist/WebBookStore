@@ -17,6 +17,7 @@ let state = {
             { id: 11, name: 'JDMWay', url: 'https://i.pinimg.com/236x/d2/ea/d0/d2ead01e2b26a4c3d00974048f7d16d4--japanese-graphic-design-japanese-art.jpg', price: 256 },
             { id: 12, name: 'Kokimoto', url: 'https://i.pinimg.com/236x/5d/80/a6/5d80a66582a5fd10cc59289f986a942a--book-design-cover-design.jpg', price: 258 }
         ],
+        coverTypes: [],
         painterStyles: [],
         painters: [],
         publishers: []
@@ -25,11 +26,13 @@ let state = {
 
 export let initializeData = () => {
     getPainterStyle();
+    getCoverTypes();
     getPainterByCount(15);
     getPublishersByCount(10);
     rerenderEntireTree(state);
 }
 
+// TODO: вынести в отдельный компонент
 export let setPainterStyle = (painterStyle) => {
     state.contentPage.painterStyles.push({ id: newGuid(), name: painterStyle });
     axios.post('https://localhost:44394/api/PainterStyle', { id: newGuid(), name: painterStyle }).then(response => {
@@ -64,6 +67,7 @@ export let updatePainterStyle = (id, name) => {
     initializeData();
 }
 
+// TODO: вынести в отдельный компонент
 export let setPainter = (name, age, description, styleName) => {
     let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
     
@@ -121,6 +125,7 @@ export let updatePainter = (oldName, name, age, description, styleName) => {
     initializeData();
 }
 
+// TODO: вынести в отдельный компонент
 export let addPublisher = (name) => {
     let publisher = {
         id: newGuid(),
@@ -170,6 +175,14 @@ export let updatePublisher = (oldName, name) => {
     initializeData();
 }
 
+// TODO: вынести в отдельный компонент
+export let getCoverTypes = () => {
+    axios.get('https://localhost:44394/api/CoverType/GetCoverTypes').then(response => {
+        console.log('get', response);
+        state.contentPage.coverTypes = response.data;
+    })
+    return state.contentPage.coverTypes;
+}
 
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

@@ -3,6 +3,7 @@ import cs from './../body/content/Content.module.css';
 import PainterStyleForm from './painter-style/PainterStyleForm';
 import PainterForm from './painter/PainterForm';
 import PublisherForm from './publisher/PublisherForm';
+import CoverTypeForm from './cover-type/CoverTypeForm';
 
 
 
@@ -20,7 +21,9 @@ const AdminPanel = (props) => {
             <div>
                 <PublisherForm publisherMethods={props.props.publisherMethods}/>
             </div>
-
+            <div>
+                <CoverTypeForm coverTypeMethods={props.props.coverTypeMethods}/>
+            </div>
         </div>
     );
 }
