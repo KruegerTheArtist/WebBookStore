@@ -210,6 +210,15 @@ export let updateCoverType = (oldName, name) => {
     initializeData();
 }
 
+export let deleteCoverType = (name) => {
+    let coverTypeId = state.contentPage.coverTypes.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/CoverType/' + coverTypeId).then(response => {
+        console.log('delete', response);
+    })
+    initializeData();
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
