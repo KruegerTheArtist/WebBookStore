@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, setPainter, deletePainter, updatePainter, getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher, getCoverTypes, addCoverType } from './redux/state';
+import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, setPainter, deletePainter, updatePainter, getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher, getCoverTypes, addCoverType, updateCoverType } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
   let painterMethods = {
@@ -22,7 +22,8 @@ export let rerenderEntireTree = (state) => {
 
   let coverTypeMethods = {
     getCoverTypes,
-    addCoverType
+    addCoverType,
+    updateCoverType
   }
 
   ReactDOM.render(

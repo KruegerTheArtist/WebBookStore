@@ -197,6 +197,19 @@ export let addCoverType = (name) => {
     // rerenderEntireTree(state);
 }
 
+export let updateCoverType = (oldName, name) => {
+    let coverTypeId = state.contentPage.coverTypes.find(ps => ps.name === oldName).id
+    let coverType = {
+        id: coverTypeId,
+        name
+      }
+    axios.put('https://localhost:44394/api/CoverType/', coverType).then(response => {
+        console.log('update', response);
+    })
+
+    initializeData();
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
