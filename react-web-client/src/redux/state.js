@@ -18,14 +18,15 @@ let state = {
             { id: 12, name: 'Kokimoto', url: 'https://i.pinimg.com/236x/5d/80/a6/5d80a66582a5fd10cc59289f986a942a--book-design-cover-design.jpg', price: 258 }
         ],
         painterStyles: [],
-        painters: []
+        painters: [],
+        publishers: []
     }
 };
 
 export let initializeData = () => {
     getPainterStyle();
     getPainterByCount(15);
-
+    getPublishersByCount(10);
     rerenderEntireTree(state);
 }
 
@@ -120,6 +121,54 @@ export let updatePainter = (oldName, name, age, description, styleName) => {
     initializeData();
 }
 
+export let addPublisher = (name) => {
+    let publisher = {
+        id: newGuid(),
+        name,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.post('https://localhost:44394/api/Publisher', publisher).then(response => {
+        console.log('set', response);
+    })
+
+    getPublishersByCount(10);
+    rerenderEntireTree(state);
+}
+
+export let deletePublisher = (name) => {
+    let publisherId = state.contentPage.publishers.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/Publisher/' + publisherId).then(response => {
+        console.log('delete', response);
+    })
+    initializeData();
+}
+
+export let getPublishersByCount = (count) => {
+    axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/'+ count + '/skip/0').then(response => {
+        console.log('get', response);
+        state.contentPage.publishers = response.data.previewPublishers;
+    })
+    return state.contentPage.publishers;
+}
+
+export let updatePublisher = (oldName, name) => {
+    let publisherId = state.contentPage.publishers.find(ps => ps.name === oldName).id
+    let publisher = {
+        id: publisherId,
+        name,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.put('https://localhost:44394/api/Publisher/', publisher).then(response => {
+        console.log('update', response);
+    })
+
+    initializeData();
+}
 
 
 let newGuid = () => {
