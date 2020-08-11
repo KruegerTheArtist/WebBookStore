@@ -133,17 +133,18 @@ export let addPublisher = (name) => {
         console.log('set', response);
     })
 
-    // getPainterByCount(15);
+    getPublishersByCount(10);
     rerenderEntireTree(state);
 }
 
-// export let deletePublisher = (name) => {
-//     axios.get('https://localhost:44394/api/Painter/GetPainters/take/'+ count + '/skip/0').then(response => {
-//         console.log('get', response);
-//         state.contentPage.painters = response.data.previewPainters;
-//     })
-//     return state.contentPage.painterStyles;
-// }
+export let deletePublisher = (name) => {
+    let publisherId = state.contentPage.publishers.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/Publisher/' + publisherId).then(response => {
+        console.log('delete', response);
+    })
+    initializeData();
+}
 
 export let getPublishersByCount = (count) => {
     axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/'+ count + '/skip/0').then(response => {

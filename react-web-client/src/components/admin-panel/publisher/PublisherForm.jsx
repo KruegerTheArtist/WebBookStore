@@ -1,6 +1,7 @@
 import React from 'react';
 import cs from './../../body/content/Content.module.css';
 import AddPublisher from './add-publisher/AddPublisher';
+import DeletePublisher from './delete-publisher/DeletePublisher';
 
 
 const PublisherForm = (props) => {
@@ -9,7 +10,7 @@ const PublisherForm = (props) => {
 
         <div className={cs.content}>
             <AddPublisher addPublisher={props} />
-            {/* <DeletePainterStyle /> */}
+            <DeletePublisher deletePublisher={props}/>
             {/* <UpdatePainterStyle/> */}
         </div>
     );
