@@ -4,6 +4,7 @@ import PainterStyleForm from './painter-style/PainterStyleForm';
 import PainterForm from './painter/PainterForm';
 import PublisherForm from './publisher/PublisherForm';
 import CoverTypeForm from './cover-type/CoverTypeForm';
+import InterpreterForm from './interpreter/InterpreterForm';
 
 
 
@@ -23,6 +24,9 @@ const AdminPanel = (props) => {
             </div>
             <div>
                 <CoverTypeForm coverTypeMethods={props.props.coverTypeMethods}/>
+            </div>
+            <div>
+                <InterpreterForm interpreterMethods={props.props.interpreterMethods}/>
             </div>
         </div>
     );

@@ -13,7 +13,7 @@ const Test = (props) => {
       <BrowserRouter>
         <Header />
         <Navbar />
-        <Content content={props.state.contentPage} painterMethods={props.painterMethods} publisherMethods={props.publisherMethods} coverTypeMethods={props.coverTypeMethods} setPainterStyle={props.setPainterStyle} deletePainterStyle={props.deletePainterStyle} updatePainterStyle={props.updatePainterStyle}/>
+        <Content content={props.state.contentPage} interpreterMethods={props.interpreterMethods} painterMethods={props.painterMethods} publisherMethods={props.publisherMethods} coverTypeMethods={props.coverTypeMethods} setPainterStyle={props.setPainterStyle} deletePainterStyle={props.deletePainterStyle} updatePainterStyle={props.updatePainterStyle}/>
       </BrowserRouter>
     </div>
   );

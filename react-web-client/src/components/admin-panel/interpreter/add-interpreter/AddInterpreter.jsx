@@ -1,44 +1,36 @@
 import React from 'react';
-import "./AddPainter.css";
+import "./AddInterpreter.css";
 
-//TODO переделать выбор стиля художника на select или checkboxes
-const AddPainter = (props) => {
-    console.log('PROS', props);
+const AddInterpreter = (props) => {
     let name = React.createRef();
     let age = React.createRef();
     let description = React.createRef();
-    let style = React.createRef();
 
     let add = () => {
         let currentName = name.current.value;
         let currentAge = age.current.value;
         let currentDescription = description.current.value;
-        let currentStyle = style.current.value;
 
-        props.setPainter.painterMethods.setPainter(currentName, currentAge, currentDescription, currentStyle );
+        props.addInterpreter.interpreterMethods.addInterpreter(currentName, currentAge, currentDescription);
     }
 
     let clear = () => {
         name.current.value = '';
         age.current.value = '';
         description.current.value = '';
-        style.current.value = '';
     }
 
     return (
         <div className="add-form">
-            <h3>Add painter</h3>
+            <h3>Add interpreter</h3>
             <div>
-                <input className="input" ref={name} placeholder="Имя художника" />
+                <input className="input" ref={name} placeholder="Имя переводчика" />
             </div>
             <div>
-                <input className="input" ref={age} placeholder="Лет художнику" />
+                <input className="input" ref={age} placeholder="Лет переводчику" />
             </div>
             <div>
                 <input className="input" ref={description} placeholder="Описание" />
-            </div>
-            <div>
-                <input className="input" ref={style} placeholder="Стиль" />
             </div>
             <div>
                 <button className="button" onClick={add}>Add</button>
@@ -48,4 +40,4 @@ const AddPainter = (props) => {
     );
 }
 
-export default AddPainter;
+export default AddInterpreter;

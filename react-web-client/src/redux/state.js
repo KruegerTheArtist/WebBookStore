@@ -231,6 +231,24 @@ export let getInterpretersByCount = (count) => {
     return state.contentPage.interpreters;
 }
 
+export let addInterpreter = (name, age, description) => {
+    let interpreter = {
+        id: newGuid(),
+        name,
+        age,
+        description,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.post('https://localhost:44394/api/Interpreter', interpreter).then(response => {
+        console.log('add interpreter', response);
+    })
+
+    getInterpretersByCount(10);
+    // rerenderEntireTree(state);
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
