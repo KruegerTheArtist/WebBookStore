@@ -21,7 +21,8 @@ let state = {
         painterStyles: [],
         painters: [],
         publishers: [],
-        interpreters: []
+        interpreters: [],
+        authors: []
     }
 };
 
@@ -31,6 +32,7 @@ export let initializeData = () => {
     getPainterByCount(15);
     getPublishersByCount(10);
     getInterpretersByCount(10);
+    getAuthorByCount(10);
     rerenderEntireTree(state);
 }
 
@@ -277,6 +279,16 @@ export let updateInterpreter = (oldName, name, age, description) => {
     })
 
     initializeData();
+}
+
+// TODO вынести в отдельный компонент
+
+export let getAuthorByCount = (count) => {
+    axios.get('https://localhost:44394/api/Author/GetAuthors/take/'+ count + '/skip/0').then(response => {
+        console.log('get authors', response);
+        state.contentPage.authors = response.data.previewAuthors;
+    })
+    return state.contentPage.authors;
 }
 
 let newGuid = () => {
