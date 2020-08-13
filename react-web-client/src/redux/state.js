@@ -20,7 +20,8 @@ let state = {
         coverTypes: [],
         painterStyles: [],
         painters: [],
-        publishers: []
+        publishers: [],
+        interpreters: []
     }
 };
 
@@ -29,6 +30,7 @@ export let initializeData = () => {
     getCoverTypes();
     getPainterByCount(15);
     getPublishersByCount(10);
+    getInterpretersByCount(10);
     rerenderEntireTree(state);
 }
 
@@ -36,7 +38,7 @@ export let initializeData = () => {
 export let setPainterStyle = (painterStyle) => {
     state.contentPage.painterStyles.push({ id: newGuid(), name: painterStyle });
     axios.post('https://localhost:44394/api/PainterStyle', { id: newGuid(), name: painterStyle }).then(response => {
-        console.log('set', response);
+        console.log('add painter style', response);
     })
 
     getPainterStyle();
@@ -45,7 +47,7 @@ export let setPainterStyle = (painterStyle) => {
 
 export let getPainterStyle = () => {
     axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles').then(response => {
-        console.log('get', response);
+        console.log('get painter style', response);
         state.contentPage.painterStyles = response.data;
     })
     return state.contentPage.painterStyles;
@@ -53,7 +55,7 @@ export let getPainterStyle = () => {
 
 export let deletePainterStyle = (id) => {
     axios.delete('https://localhost:44394/api/PainterStyle/' + id).then(response => {
-        console.log('delete', response);
+        console.log('delete painter style', response);
     })
 
     initializeData();
@@ -61,7 +63,7 @@ export let deletePainterStyle = (id) => {
 
 export let updatePainterStyle = (id, name) => {
     axios.put('https://localhost:44394/api/PainterStyle/',{id: id, name: name}).then(response => {
-        console.log('update', response);
+        console.log('update painter style', response);
     })
 
     initializeData();
@@ -82,7 +84,7 @@ export let setPainter = (name, age, description, styleName) => {
         ]
       }
     axios.post('https://localhost:44394/api/Painter', painter).then(response => {
-        console.log('set', response);
+        console.log('add painter', response);
     })
 
     getPainterByCount(15);
@@ -91,7 +93,7 @@ export let setPainter = (name, age, description, styleName) => {
 
 export let getPainterByCount = (count) => {
     axios.get('https://localhost:44394/api/Painter/GetPainters/take/'+ count + '/skip/0').then(response => {
-        console.log('get', response);
+        console.log('get painter', response);
         state.contentPage.painters = response.data.previewPainters;
     })
     return state.contentPage.painterStyles;
@@ -101,7 +103,7 @@ export let deletePainter = (name) => {
     let painterId = state.contentPage.painters.find(ps => ps.name === name).id
 
     axios.delete('https://localhost:44394/api/Painter/' + painterId).then(response => {
-        console.log('delete', response);
+        console.log('delete painter', response);
     })
     initializeData();
 }
@@ -116,10 +118,12 @@ export let updatePainter = (oldName, name, age, description, styleName) => {
         age,
         description,
         styleId: styleId,
-        booksIds: oldPainter.booksIds
+        booksIds: [
+            newGuid()
+        ]
     }
     axios.put('https://localhost:44394/api/Painter/', painter).then(response => {
-        console.log('update', response);
+        console.log('update painter', response);
     })
 
     initializeData();
@@ -135,7 +139,7 @@ export let addPublisher = (name) => {
         ]
       }
     axios.post('https://localhost:44394/api/Publisher', publisher).then(response => {
-        console.log('set', response);
+        console.log('add publisher', response);
     })
 
     getPublishersByCount(10);
@@ -146,14 +150,14 @@ export let deletePublisher = (name) => {
     let publisherId = state.contentPage.publishers.find(ps => ps.name === name).id
 
     axios.delete('https://localhost:44394/api/Publisher/' + publisherId).then(response => {
-        console.log('delete', response);
+        console.log('delete publisher', response);
     })
     initializeData();
 }
 
 export let getPublishersByCount = (count) => {
     axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/'+ count + '/skip/0').then(response => {
-        console.log('get', response);
+        console.log('get publisher', response);
         state.contentPage.publishers = response.data.previewPublishers;
     })
     return state.contentPage.publishers;
@@ -169,7 +173,7 @@ export let updatePublisher = (oldName, name) => {
         ]
       }
     axios.put('https://localhost:44394/api/Publisher/', publisher).then(response => {
-        console.log('update', response);
+        console.log('update publisher', response);
     })
 
     initializeData();
@@ -178,7 +182,7 @@ export let updatePublisher = (oldName, name) => {
 // TODO: вынести в отдельный компонент
 export let getCoverTypes = () => {
     axios.get('https://localhost:44394/api/CoverType/GetCoverTypes').then(response => {
-        console.log('get', response);
+        console.log('get cover type', response);
         state.contentPage.coverTypes = response.data;
     })
     return state.contentPage.coverTypes;
@@ -190,7 +194,7 @@ export let addCoverType = (name) => {
         name
       }
     axios.post('https://localhost:44394/api/CoverType', сoverType).then(response => {
-        console.log('set', response);
+        console.log('add cover type', response);
     })
 
     getCoverTypes(10);
@@ -204,7 +208,7 @@ export let updateCoverType = (oldName, name) => {
         name
       }
     axios.put('https://localhost:44394/api/CoverType/', coverType).then(response => {
-        console.log('update', response);
+        console.log('update cover type', response);
     })
 
     initializeData();
@@ -214,8 +218,64 @@ export let deleteCoverType = (name) => {
     let coverTypeId = state.contentPage.coverTypes.find(ps => ps.name === name).id
 
     axios.delete('https://localhost:44394/api/CoverType/' + coverTypeId).then(response => {
-        console.log('delete', response);
+        console.log('delete cover type', response);
     })
+    initializeData();
+}
+
+// TODO вынести в отдельный компонент
+
+export let getInterpretersByCount = (count) => {
+    axios.get('https://localhost:44394/api/Interpreter/GetInterpreters/take/'+ count + '/skip/0').then(response => {
+        console.log('get interpreters', response);
+        state.contentPage.interpreters = response.data.previewInterpreters;
+    })
+    return state.contentPage.interpreters;
+}
+
+export let addInterpreter = (name, age, description) => {
+    let interpreter = {
+        id: newGuid(),
+        name,
+        age,
+        description,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.post('https://localhost:44394/api/Interpreter', interpreter).then(response => {
+        console.log('add interpreter', response);
+    })
+
+    getInterpretersByCount(10);
+    // rerenderEntireTree(state);
+}
+
+export let deleteInterpreter = (name) => {
+    let interpreterId = state.contentPage.interpreters.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/Interpreter/' + interpreterId).then(response => {
+        console.log('delete interpreter', response);
+    })
+    initializeData();
+}
+
+export let updateInterpreter = (oldName, name, age, description) => {
+    let oldInterpreter = state.contentPage.interpreters.find(ps => ps.name === oldName)
+
+    let interpreter = {
+        id: oldInterpreter.id,
+        name,
+        age,
+        description,
+        booksIds: [
+            newGuid()
+        ]
+    }
+    axios.put('https://localhost:44394/api/Interpreter/', interpreter).then(response => {
+        console.log('update interpreter', response);
+    })
+
     initializeData();
 }
 
