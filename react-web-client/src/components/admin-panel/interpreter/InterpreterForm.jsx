@@ -2,17 +2,16 @@ import React from 'react';
 import cs from './../../body/content/Content.module.css';
 import AddInterpreter from './add-interpreter/AddInterpreter';
 import DeleteInterpreter from './delete-interpreter/DeleteInterpreter';
+import UpdateInterpreter from './update-interpreter/UpdateInterpreter';
 
 
 const InterpreterForm = (props) => {
-    console.log('PAAAA', props);
-    
     return (
 
         <div className={cs.content}>
             <AddInterpreter addInterpreter={props}/>
             <DeleteInterpreter deleteInterpreter={props}/>
-            {/* <UpdatePainter updatePainter={props}/> */}
+            <UpdateInterpreter updateInterpreter={props}/>
         </div>
     );
 }

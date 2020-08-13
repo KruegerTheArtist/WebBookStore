@@ -1,21 +1,19 @@
 import React from 'react';
-import "./UpdatePainter.css";
+import "./UpdateInterpreter.css";
 
-const UpdatePainter = (props) => {
+const UpdateInterpreter = (props) => {
     let oldName = React.createRef();
     let name = React.createRef();
     let age = React.createRef();
     let description = React.createRef();
-    let style = React.createRef();
 
     let add = () => {
         let currentoldName = oldName.current.value;
         let currentName = name.current.value;
         let currentAge = age.current.value;
         let currentDescription = description.current.value;
-        let currentStyle = style.current.value;
 
-        props.updatePainter.painterMethods.updatePainter(currentoldName, currentName, currentAge, currentDescription, currentStyle );
+        props.updateInterpreter.interpreterMethods.updateInterpreter(currentoldName, currentName, currentAge, currentDescription );
     }
 
     let clear = () => {
@@ -23,24 +21,20 @@ const UpdatePainter = (props) => {
         name.current.value = '';
         age.current.value = '';
         description.current.value = '';
-        style.current.value = '';
     }
     return (
         <div className="add-form">
-            <h3>Update painter</h3>
+            <h3>Update interpreter</h3>
             <div>
-                <input className="input" ref={oldName} placeholder="Старое художника" />
-                <input className="input" ref={name} placeholder="Имя художника" />
+                <input className="input" ref={oldName} placeholder="Старое имя переводчика" />
+                <input className="input" ref={name} placeholder="Имя переводчика" />
 
             </div>
             <div>
-                <input className="input" ref={age} placeholder="Лет художнику" />
+                <input className="input" ref={age} placeholder="Лет переводчику" />
             </div>
             <div>
                 <input className="input" ref={description} placeholder="Описание" />
-            </div>
-            <div>
-                <input className="input" ref={style} placeholder="Стиль" />
             </div>
             <div>
                 <button className="button" onClick={add}>Add</button>
@@ -50,4 +44,4 @@ const UpdatePainter = (props) => {
     );
 }
 
-export default UpdatePainter;
+export default UpdateInterpreter;

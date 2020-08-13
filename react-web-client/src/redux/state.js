@@ -118,7 +118,9 @@ export let updatePainter = (oldName, name, age, description, styleName) => {
         age,
         description,
         styleId: styleId,
-        booksIds: oldPainter.booksIds
+        booksIds: [
+            newGuid()
+        ]
     }
     axios.put('https://localhost:44394/api/Painter/', painter).then(response => {
         console.log('update painter', response);
@@ -255,6 +257,25 @@ export let deleteInterpreter = (name) => {
     axios.delete('https://localhost:44394/api/Interpreter/' + interpreterId).then(response => {
         console.log('delete interpreter', response);
     })
+    initializeData();
+}
+
+export let updateInterpreter = (oldName, name, age, description) => {
+    let oldInterpreter = state.contentPage.interpreters.find(ps => ps.name === oldName)
+
+    let interpreter = {
+        id: oldInterpreter.id,
+        name,
+        age,
+        description,
+        booksIds: [
+            newGuid()
+        ]
+    }
+    axios.put('https://localhost:44394/api/Interpreter/', interpreter).then(response => {
+        console.log('update interpreter', response);
+    })
+
     initializeData();
 }
 
