@@ -5,9 +5,9 @@ const DeleteAuthor = (props) => {
 
     let name = React.createRef();
 
-    let deletePainter = () => {
+    let deleteAuthor = () => {
         let currentName = name.current.value;
-        props.deletePainter.painterMethods.deletePainter(currentName);
+        props.deleteAuthor.authorMethods.deleteAuthor(currentName);
     }
 
     let clear = () => {
@@ -16,12 +16,12 @@ const DeleteAuthor = (props) => {
 
     return (
         <div className="add-form">
-            <h3>Delete painter</h3>
+            <h3>Delete author</h3>
             <div>
-                <input className="input" ref={name} placeholder="Имя художника" />
+                <input className="input" ref={name} placeholder="Имя автора" />
             </div>
             <div>
-                <button className="button" onClick={deletePainter}>Delete</button>
+                <button className="button" onClick={deleteAuthor}>Delete</button>
                 <button className="button" onClick={clear}>Clear</button>
             </div>
         </div >
