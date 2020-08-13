@@ -309,6 +309,25 @@ export let addAuthor = (name, age, description) => {
     // rerenderEntireTree(state);
 }
 
+export let updateAuthor = (oldName, name, age, description) => {
+    let oldAuthor = state.contentPage.authors.find(ps => ps.name === oldName)
+
+    let author = {
+        id: oldAuthor.id,
+        name,
+        age,
+        description,
+        booksIds: [
+            newGuid()
+        ]
+    }
+    axios.put('https://localhost:44394/api/Author/', author).then(response => {
+        console.log('update author', response);
+    })
+
+    initializeData();
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);

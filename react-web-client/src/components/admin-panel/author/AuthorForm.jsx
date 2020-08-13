@@ -1,6 +1,7 @@
 import React from 'react';
 import cs from './../../body/content/Content.module.css';
 import AddAuthor from './add-author/AddAuthor';
+import UpdateAuthor from './update-author/UpdateAuthor';
 
 
 const AuthorForm = (props) => {
@@ -9,7 +10,7 @@ const AuthorForm = (props) => {
         <div className={cs.content}>
             <AddAuthor addAuthor={props}/>
             {/* <DeletePainter deletePainter={props}/> */}
-            {/* <UpdatePainter updatePainter={props}/> */}
+            <UpdateAuthor updateAuthor={props}/>
         </div>
     );
 }
