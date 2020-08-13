@@ -249,6 +249,15 @@ export let addInterpreter = (name, age, description) => {
     // rerenderEntireTree(state);
 }
 
+export let deleteInterpreter = (name) => {
+    let interpreterId = state.contentPage.interpreters.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/Interpreter/' + interpreterId).then(response => {
+        console.log('delete interpreter', response);
+    })
+    initializeData();
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
