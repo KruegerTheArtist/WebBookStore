@@ -291,6 +291,24 @@ export let getAuthorByCount = (count) => {
     return state.contentPage.authors;
 }
 
+export let addAuthor = (name, age, description) => {
+    let author = {
+        id: newGuid(),
+        name,
+        age,
+        description,
+        booksIds: [
+            newGuid()
+        ]
+      }
+    axios.post('https://localhost:44394/api/Author', author).then(response => {
+        console.log('add author', response);
+    })
+
+    getAuthorByCount(10);
+    // rerenderEntireTree(state);
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);

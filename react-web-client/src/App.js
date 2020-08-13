@@ -6,14 +6,13 @@ import Content from './components/body/content/Content';
 import { BrowserRouter } from 'react-router-dom';
 
 const Test = (props) => {
-  console.log('@@@@', props);
   
   return (
     <div className="app-wrapper">
       <BrowserRouter>
         <Header />
         <Navbar />
-        <Content content={props.state.contentPage} interpreterMethods={props.interpreterMethods} painterMethods={props.painterMethods} publisherMethods={props.publisherMethods} coverTypeMethods={props.coverTypeMethods} setPainterStyle={props.setPainterStyle} deletePainterStyle={props.deletePainterStyle} updatePainterStyle={props.updatePainterStyle}/>
+        <Content content={props.state.contentPage} authorMethods={props.authorMethods} interpreterMethods={props.interpreterMethods} painterMethods={props.painterMethods} publisherMethods={props.publisherMethods} coverTypeMethods={props.coverTypeMethods} setPainterStyle={props.setPainterStyle} deletePainterStyle={props.deletePainterStyle} updatePainterStyle={props.updatePainterStyle}/>
       </BrowserRouter>
     </div>
   );
