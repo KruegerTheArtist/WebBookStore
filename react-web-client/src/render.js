@@ -8,7 +8,8 @@ import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle
   getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher, 
   getCoverTypes, addCoverType, updateCoverType, deleteCoverType, 
   addInterpreter, deleteInterpreter, updateInterpreter,
-  addAuthor, updateAuthor, deleteAuthor } from './redux/state';
+  addAuthor, updateAuthor, deleteAuthor,
+  addBook, updateBook, deleteBook } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
   let painterMethods = {
@@ -44,9 +45,14 @@ export let rerenderEntireTree = (state) => {
     deleteAuthor
   }
 
+  let bookMethods = {
+    addBook,
+    updateBook,
+    deleteBook
+  }
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} setPainterStyle={setPainterStyle} deletePainterStyle={deletePainterStyle} updatePainterStyle={updatePainterStyle} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} />
+      <App state={state} setPainterStyle={setPainterStyle} deletePainterStyle={deletePainterStyle} updatePainterStyle={updatePainterStyle} bookMethods={bookMethods} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} />
     </React.StrictMode>,
     document.getElementById('root')
   );
