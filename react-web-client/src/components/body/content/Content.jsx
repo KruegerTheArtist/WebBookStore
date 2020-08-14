@@ -16,7 +16,7 @@ const Content = (props) => {
             <Route path='/bestsellers' render={() => <Bestsellers filter="bestsellers" books={props.content.books} books1={props.content} /> } />
             <Route path='/presents' render={() => <Bestsellers filter="presents" books={props.content.books} /> } />
             <Route path='/preOrder' render={() => <Bestsellers filter="preOrder" books={props.content.books} /> } />
-            <Route path='/catalog' render={() => <Bestsellers filter="catalog"books={props.content.books}  /> } />
+            <Route path='/catalog' render={() => <Bestsellers filter="catalog" books={props.content.books}  /> } />
 
             <Route path='/adminPanel' render={() => <AdminPanel props={props} /> } />
 
