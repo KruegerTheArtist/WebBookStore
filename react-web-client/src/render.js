@@ -9,7 +9,7 @@ import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle
   getCoverTypes, addCoverType, updateCoverType, deleteCoverType, 
   addInterpreter, deleteInterpreter, updateInterpreter,
   addAuthor, updateAuthor, deleteAuthor,
-  addBook, updateBook } from './redux/state';
+  addBook, updateBook, deleteBook } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
   let painterMethods = {
@@ -47,7 +47,8 @@ export let rerenderEntireTree = (state) => {
 
   let bookMethods = {
     addBook,
-    updateBook
+    updateBook,
+    deleteBook
   }
   ReactDOM.render(
     <React.StrictMode>

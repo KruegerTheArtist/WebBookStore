@@ -7,7 +7,7 @@ const DeleteBook = (props) => {
 
     let deleteAuthor = () => {
         let currentName = name.current.value;
-        props.deleteAuthor.authorMethods.deleteAuthor(currentName);
+        props.deleteBook.bookMethods.deleteBook(currentName);
     }
 
     let clear = () => {
@@ -16,9 +16,9 @@ const DeleteBook = (props) => {
 
     return (
         <div className="add-form">
-            <h3>Delete author</h3>
+            <h3>Delete book</h3>
             <div>
-                <input className="input" ref={name} placeholder="Имя автора" />
+                <input className="input" ref={name} placeholder="Название книги" />
             </div>
             <div>
                 <button className="button" onClick={deleteAuthor}>Delete</button>

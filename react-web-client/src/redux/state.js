@@ -431,6 +431,15 @@ export let updateBook = (oldName, name, publishDate, coverTypeName, description,
     initializeData();
 }
 
+export let deleteBook = (name) => {
+    let bookId = state.contentPage.books.find(ps => ps.name === name).id
+
+    axios.delete('https://localhost:44394/api/Book/' + bookId).then(response => {
+        console.log('delete book', response);
+    })
+    initializeData();
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
