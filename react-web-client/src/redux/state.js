@@ -354,6 +354,44 @@ export let getBooksByCount = (count) => {
     return state.contentPage.books;
 }
 
+export let addBook = (name, publishDate, coverTypeName, description, format, countPage, price, weight, duplicate, ageLimit, publisherName) => {
+    let coverTypeId = state.contentPage.coverTypes.find(ct => ct.name === coverTypeName).id;
+    let publisherId = state.contentPage.publishers.find(p => p.name === publisherName).id;
+
+    let book = {
+        id: newGuid(),
+        name,
+        publishDate,
+        coverTypeId,
+        genreId: newGuid(),
+        languageId: newGuid(),
+        description,
+        isbN_13: '1',
+        format,
+        countPage,
+        price,
+        weight,
+        duplicate,
+        ageLimit,
+        publisherId,
+        authorsIds: [
+            newGuid()
+        ],
+        paintersIds: [
+            newGuid()
+        ],
+        interpretersIds: [
+            newGuid()
+        ]
+    }
+    axios.post('https://localhost:44394/api/Book', book).then(response => {
+        console.log('add book', response);
+    })
+
+    getBooksByCount(10);
+    // rerenderEntireTree(state);
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);

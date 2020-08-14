@@ -6,6 +6,7 @@ import PublisherForm from './publisher/PublisherForm';
 import CoverTypeForm from './cover-type/CoverTypeForm';
 import InterpreterForm from './interpreter/InterpreterForm';
 import AuthorForm from './author/AuthorForm';
+import BookForm from './book/BookForm';
 
 
 
@@ -31,6 +32,9 @@ const AdminPanel = (props) => {
             </div>
             <div>
                 <AuthorForm authorMethods={props.props.authorMethods}/>
+            </div>
+            <div>
+                <BookForm bookMethods={props.props.bookMethods}/>
             </div>
         </div>
     );
