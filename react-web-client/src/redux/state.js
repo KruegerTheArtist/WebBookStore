@@ -392,6 +392,45 @@ export let addBook = (name, publishDate, coverTypeName, description, format, cou
     // rerenderEntireTree(state);
 }
 
+export let updateBook = (oldName, name, publishDate, coverTypeName, description, format, countPage, price, weight, duplicate, ageLimit, publisherName) => {
+    let oldBook = state.contentPage.books.find(b => b.name === oldName)
+    
+    let coverTypeId = state.contentPage.coverTypes.find(ct => ct.name === coverTypeName).id;
+    let publisherId = state.contentPage.publishers.find(p => p.name === publisherName).id;
+
+    let book = {
+        id: oldBook.id,
+        name,
+        publishDate,
+        coverTypeId,
+        genreId: newGuid(),
+        languageId: newGuid(),
+        description,
+        isbN_13: '1',
+        format,
+        countPage,
+        price,
+        weight,
+        duplicate,
+        ageLimit,
+        publisherId,
+        authorsIds: [
+            newGuid()
+        ],
+        paintersIds: [
+            newGuid()
+        ],
+        interpretersIds: [
+            newGuid()
+        ]
+    }
+    axios.put('https://localhost:44394/api/Book/', book).then(response => {
+        console.log('update book', response);
+    })
+
+    initializeData();
+}
+
 let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);

@@ -46,7 +46,7 @@ const AddBook = (props) => {
 
     return (
         <div className="add-form">
-            <h3>Add author</h3>
+            <h3>Add book</h3>
             <div>
                 <input className="input" ref={name} placeholder="Название книги" />
             </div>
