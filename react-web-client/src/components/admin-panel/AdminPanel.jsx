@@ -11,12 +11,11 @@ import BookForm from './book/BookForm';
 
 
 const AdminPanel = (props) => {
-
     return (
 
         <div className={cs.content}>
             <div>
-                <PainterStyleForm deletePainterStyle={props.props.deletePainterStyle} updatePainterStyle={props.props.updatePainterStyle} setPainterStyle={props.props.setPainterStyle} painterStyles={props.props.content} />
+                <PainterStyleForm painterStyleMethods={props.props.painterStyleMethods} state={props.props} />
             </div>
             <div>
                 <PainterForm painterMethods={props.props.painterMethods} />

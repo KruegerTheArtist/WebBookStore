@@ -7,7 +7,7 @@ const AddPainterStyle = (props) => {
     
     let add = () => {
         let text = name1.current.value;
-        props.setPainterStyle(text);
+        props.setPainterStyle.painterStyleMethods.setPainterStyle(text);
     }
 
     let clear = () => {

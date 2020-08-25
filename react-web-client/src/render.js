@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, 
+import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, getPainterStyle,
   setPainter, deletePainter, updatePainter, 
   getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher, 
   getCoverTypes, addCoverType, updateCoverType, deleteCoverType, 
@@ -12,6 +12,13 @@ import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle
   addBook, updateBook, deleteBook } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
+  let painterStyleMethods = {
+    setPainterStyle,
+    deletePainterStyle,
+    updatePainterStyle,
+    getPainterStyle
+  }
+
   let painterMethods = {
     setPainter,
     deletePainter,
@@ -52,7 +59,7 @@ export let rerenderEntireTree = (state) => {
   }
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} setPainterStyle={setPainterStyle} deletePainterStyle={deletePainterStyle} updatePainterStyle={updatePainterStyle} bookMethods={bookMethods} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} />
+      <App state={state} painterStyleMethods={painterStyleMethods} bookMethods={bookMethods} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} />
     </React.StrictMode>,
     document.getElementById('root')
   );

@@ -18,7 +18,7 @@ let state = {
             { id: 12, name: 'Kokimoto', url: 'https://i.pinimg.com/236x/5d/80/a6/5d80a66582a5fd10cc59289f986a942a--book-design-cover-design.jpg', price: 258 }
         ],
         coverTypes: [],
-        painterStyles: [],
+        painterStyles: [{ id: "d680babb-53dc-430e-a267-11669c07fa5c", name: "Империализм" }],
         painters: [],
         publishers: [],
         interpreters: [],
@@ -34,8 +34,7 @@ export let initializeData = () => {
     getInterpretersByCount(10);
     getAuthorByCount(10);
     getBooksByCount(10);
-    console.log('state', state);
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 // TODO: вынести в отдельный компонент
@@ -45,15 +44,17 @@ export let setPainterStyle = (painterStyle) => {
         console.log('add painter style', response);
     })
 
-    getPainterStyle();
+    // getPainterStyle();
     // rerenderEntireTree(state);
 }
 
-export let getPainterStyle = () => {
-    axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles').then(response => {
-        console.log('get painter style', response);
-        state.contentPage.painterStyles = response.data;
-    })
+export let getPainterStyle = async () => {
+    let painterStylesResponse = await axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles');
+    painterStylesResponse.data.forEach(data => {
+        if (!state.contentPage.painterStyles.includes(data)) {
+            state.contentPage.painterStyles.push(data);
+        }
+    });
     return state.contentPage.painterStyles;
 }
 
@@ -394,7 +395,7 @@ export let addBook = (name, publishDate, coverTypeName, description, format, cou
 
 export let updateBook = (oldName, name, publishDate, coverTypeName, description, format, countPage, price, weight, duplicate, ageLimit, publisherName) => {
     let oldBook = state.contentPage.books.find(b => b.name === oldName)
-    
+
     let coverTypeId = state.contentPage.coverTypes.find(ct => ct.name === coverTypeName).id;
     let publisherId = state.contentPage.publishers.find(p => p.name === publisherName).id;
 
