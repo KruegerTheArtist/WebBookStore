@@ -1,0 +1,47 @@
+.admin-panel {
+    background-color: rgb(255, 251, 217) !important;
+    grid-area: h;
+  }
+
+.admin-panel-content {
+    display: grid;
+
+    grid-template-areas:
+    "authorPanel"
+    "bookPanel"
+    "coverTypePanel"
+    "interpreterPanel"
+    "painterPanel"
+    "publisherPanel"
+    "painterStylePanel";
+    grid-template-rows: 200px 440px 170px 220px 245px 195px 235px;
+    /* grid-template-columns: 1fr; */
+}
+
+.author-panel {
+    grid-area: authorPanel;
+}
+.book-panel {
+    margin-top: 20px;
+    grid-area: bookPanel;
+}
+.cover-type-panel {
+    margin-top: 20px;
+    grid-area: coverTypePanel;
+}
+.interpreter-panel {
+    margin-top: 20px;
+    grid-area: interpreterPanel;
+}
+.painter-panel {
+    margin-top: 20px;
+    grid-area: painterPanel;
+}
+.painter-style-panel {
+    margin-top: 20px;
+    grid-area: painterStylePanel;
+}
+.publisher-panel {
+    margin-top: 20px;
+    grid-area: publisherPanel;
+}
