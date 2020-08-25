@@ -1,5 +1,6 @@
 import { rerenderEntireTree } from "../render";
 import * as axios from "axios";
+import { getPainterStyle } from "./API/PainterStylesMethods";
 
 let state = {
     contentPage: {
@@ -35,43 +36,6 @@ export let initializeData = () => {
     getAuthorByCount(10);
     getBooksByCount(10);
     // rerenderEntireTree(state);
-}
-
-// TODO: вынести в отдельный компонент
-export let setPainterStyle = (painterStyle) => {
-    state.contentPage.painterStyles.push({ id: newGuid(), name: painterStyle });
-    axios.post('https://localhost:44394/api/PainterStyle', { id: newGuid(), name: painterStyle }).then(response => {
-        console.log('add painter style', response);
-    })
-
-    // getPainterStyle();
-    // rerenderEntireTree(state);
-}
-
-export let getPainterStyle = async () => {
-    let painterStylesResponse = await axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles');
-    painterStylesResponse.data.forEach(data => {
-        if (!state.contentPage.painterStyles.includes(data)) {
-            state.contentPage.painterStyles.push(data);
-        }
-    });
-    return state.contentPage.painterStyles;
-}
-
-export let deletePainterStyle = (id) => {
-    axios.delete('https://localhost:44394/api/PainterStyle/' + id).then(response => {
-        console.log('delete painter style', response);
-    })
-
-    initializeData();
-}
-
-export let updatePainterStyle = (id, name) => {
-    axios.put('https://localhost:44394/api/PainterStyle/', { id: id, name: name }).then(response => {
-        console.log('update painter style', response);
-    })
-
-    initializeData();
 }
 
 // TODO: вынести в отдельный компонент
@@ -441,7 +405,7 @@ export let deleteBook = (name) => {
     initializeData();
 }
 
-let newGuid = () => {
+export let newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
