@@ -7,9 +7,9 @@ import { getPainterStyle, deletePainterStyle, updatePainterStyle, setPainterStyl
 import { setPainter, deletePainter, updatePainter, getPainterByCount } from './redux/API/Painter';
 import { addPublisher, getPublishersByCount, deletePublisher, updatePublisher } from './redux/API/Publisher';
 import { getCoverTypes, addCoverType, updateCoverType, deleteCoverType } from './redux/API/CoverTypes';
+import { addInterpreter, deleteInterpreter, updateInterpreter } from './redux/API/Interpreter';
 
 import {
-  addInterpreter, deleteInterpreter, updateInterpreter,
   addAuthor, updateAuthor, deleteAuthor,
   addBook, updateBook, deleteBook, initializeData
 } from './redux/state';
