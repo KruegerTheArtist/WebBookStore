@@ -1,18 +1,21 @@
 import React from 'react';
-import cs from './../../body/content/Content.module.css';
 import AddAuthor from './add-author/AddAuthor';
 import UpdateAuthor from './update-author/UpdateAuthor';
 import DeleteAuthor from './delete-author/DeleteAuthor';
+import './AuthorForm.css';
 
 
 const AuthorForm = (props) => {
     return (
-
-        <div className={cs.content}>
-            <AddAuthor addAuthor={props}/>
-            <DeleteAuthor deleteAuthor={props}/>
-            <UpdateAuthor updateAuthor={props}/>
+        <div className="author-form">
+            <span className="title">Автор:</span>
+            <div className="author-form-content">
+                <AddAuthor className="add-panel" addAuthor={props} />
+                <DeleteAuthor className="delete-panel" deleteAuthor={props} />
+                <UpdateAuthor className="update-panel" updateAuthor={props} />
+            </div>
         </div>
+
     );
 }
 

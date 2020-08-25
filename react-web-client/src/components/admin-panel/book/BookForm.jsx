@@ -1,18 +1,21 @@
 import React from 'react';
-import cs from './../../body/content/Content.module.css';
 import AddBook from './add-book/AddBook';
 import UpdateBook from './update-book/UpdateBook';
 import DeleteBook from './delete-book/DeleteBook';
+import './BookForm.css';
 
 
 const BookForm = (props) => {
     return (
-
-        <div className={cs.content}>
-            <AddBook addBook={props}/>
-            <DeleteBook deleteBook={props}/>
-            <UpdateBook updateBook={props}/>
+        <div className="book-form">
+            <span className="title">Книга:</span>
+            <div className="book-form-content">
+                <AddBook className="add-panel" addBook={props} />
+                <DeleteBook className="delete-panel" deleteBook={props} />
+                <UpdateBook className="update-panel" updateBook={props} />
+            </div>
         </div>
+
     );
 }
 
