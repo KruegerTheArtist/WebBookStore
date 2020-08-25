@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, getPainterStyle,
-  setPainter, deletePainter, updatePainter, 
-  getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher, 
-  getCoverTypes, addCoverType, updateCoverType, deleteCoverType, 
-  addInterpreter, deleteInterpreter, updateInterpreter,
-  addAuthor, updateAuthor, deleteAuthor,
-  addBook, updateBook, deleteBook } from './redux/state';
+import { getPainterStyle, deletePainterStyle, updatePainterStyle, setPainterStyle } from './redux/API/PainterStyles';
+import { setPainter, deletePainter, updatePainter, getPainterByCount } from './redux/API/Painter';
+import { addPublisher, getPublishersByCount, deletePublisher, updatePublisher } from './redux/API/Publisher';
+import { getCoverTypes, addCoverType, updateCoverType, deleteCoverType } from './redux/API/CoverTypes';
+import { addInterpreter, deleteInterpreter, updateInterpreter } from './redux/API/Interpreter';
+import { addAuthor, updateAuthor, deleteAuthor } from './redux/API/Author';
+import { addBook, updateBook, deleteBook } from './redux/API/Book';
+import { initializeData } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
   let painterStyleMethods = {
