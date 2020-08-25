@@ -9,10 +9,8 @@ import { addPublisher, getPublishersByCount, deletePublisher, updatePublisher } 
 import { getCoverTypes, addCoverType, updateCoverType, deleteCoverType } from './redux/API/CoverTypes';
 import { addInterpreter, deleteInterpreter, updateInterpreter } from './redux/API/Interpreter';
 import { addAuthor, updateAuthor, deleteAuthor } from './redux/API/Author';
-
-import {
-  addBook, updateBook, deleteBook, initializeData
-} from './redux/state';
+import { addBook, updateBook, deleteBook } from './redux/API/Book';
+import { initializeData } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
   let painterStyleMethods = {
