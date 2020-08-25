@@ -4,6 +4,7 @@ import { getPainterByCount } from "./API/Painter";
 import { getPublishersByCount } from "./API/Publisher";
 import { getCoverTypes } from "./API/CoverTypes";
 import { getInterpretersByCount } from "./API/Interpreter";
+import { getAuthorByCount } from "./API/Author";
 
 let state = {
     contentPage: {
@@ -38,63 +39,6 @@ export let initializeData = () => {
     getInterpretersByCount(10);
     getAuthorByCount(10);
     getBooksByCount(10);
-}
-
-
-// TODO вынести в отдельный компонент
-
-export let getAuthorByCount = (count) => {
-    axios.get('https://localhost:44394/api/Author/GetAuthors/take/' + count + '/skip/0').then(response => {
-        console.log('get authors', response);
-        state.contentPage.authors = response.data.previewAuthors;
-    })
-    return state.contentPage.authors;
-}
-
-export let addAuthor = (name, age, description) => {
-    let author = {
-        id: newGuid(),
-        name,
-        age,
-        description,
-        booksIds: [
-            newGuid()
-        ]
-    }
-    axios.post('https://localhost:44394/api/Author', author).then(response => {
-        console.log('add author', response);
-    })
-
-    getAuthorByCount(10);
-    // rerenderEntireTree(state);
-}
-
-export let updateAuthor = (oldName, name, age, description) => {
-    let oldAuthor = state.contentPage.authors.find(ps => ps.name === oldName)
-
-    let author = {
-        id: oldAuthor.id,
-        name,
-        age,
-        description,
-        booksIds: [
-            newGuid()
-        ]
-    }
-    axios.put('https://localhost:44394/api/Author/', author).then(response => {
-        console.log('update author', response);
-    })
-
-    initializeData();
-}
-
-export let deleteAuthor = (name) => {
-    let authorId = state.contentPage.authors.find(ps => ps.name === name).id
-
-    axios.delete('https://localhost:44394/api/Author/' + authorId).then(response => {
-        console.log('delete author', response);
-    })
-    initializeData();
 }
 
 // TODO: вынести в отдельный компонент
