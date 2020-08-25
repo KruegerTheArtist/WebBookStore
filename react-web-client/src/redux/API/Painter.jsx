@@ -1,7 +1,6 @@
 import * as axios from "axios";
 import state, { initializeData, newGuid } from "../state";
 
-// TODO: вынести в отдельный компонент
 export let setPainter = (name, age, description, styleName) => {
     let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
 
@@ -19,8 +18,7 @@ export let setPainter = (name, age, description, styleName) => {
         console.log('add painter', response);
     })
 
-    getPainterByCount(15);
-    // rerenderEntireTree(state);
+    initializeData();
 }
 
 export let getPainterByCount = (count) => {
