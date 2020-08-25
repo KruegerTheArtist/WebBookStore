@@ -3,9 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, setPainter, deletePainter, updatePainter, getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher, getCoverTypes, addCoverType, updateCoverType, deleteCoverType } from './redux/state';
+import { setPainterStyle, initializeData, deletePainterStyle, updatePainterStyle, getPainterStyle,
+  setPainter, deletePainter, updatePainter, 
+  getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher, 
+  getCoverTypes, addCoverType, updateCoverType, deleteCoverType, 
+  addInterpreter, deleteInterpreter, updateInterpreter,
+  addAuthor, updateAuthor, deleteAuthor,
+  addBook, updateBook, deleteBook } from './redux/state';
 
 export let rerenderEntireTree = (state) => {
+  let painterStyleMethods = {
+    setPainterStyle,
+    deletePainterStyle,
+    updatePainterStyle,
+    getPainterStyle
+  }
+
   let painterMethods = {
     setPainter,
     deletePainter,
@@ -27,9 +40,26 @@ export let rerenderEntireTree = (state) => {
     deleteCoverType
   }
 
+  let interpreterMethods = {
+    addInterpreter,
+    deleteInterpreter,
+    updateInterpreter
+  }
+
+  let authorMethods = {
+    addAuthor,
+    updateAuthor,
+    deleteAuthor
+  }
+
+  let bookMethods = {
+    addBook,
+    updateBook,
+    deleteBook
+  }
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} setPainterStyle={setPainterStyle} deletePainterStyle={deletePainterStyle} updatePainterStyle={updatePainterStyle} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} />
+      <App state={state} painterStyleMethods={painterStyleMethods} bookMethods={bookMethods} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} />
     </React.StrictMode>,
     document.getElementById('root')
   );

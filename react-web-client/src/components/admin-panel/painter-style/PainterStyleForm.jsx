@@ -11,9 +11,9 @@ const PainterStyleForm = (props) => {
     return (
 
         <div className={cs.content}>
-            <AddPainterStyle setPainterStyle={props.setPainterStyle} painterStyles={props.painterStyles} />
-            <DeletePainterStyle deletePainterStyle={props.deletePainterStyle} painterStyles={props.painterStyles} />
-            <UpdatePainterStyle updatePainterStyle={props.updatePainterStyle} painterStyles={props.painterStyles} />
+            <AddPainterStyle setPainterStyle={props} />
+            <DeletePainterStyle deletePainterStyle={props} />
+            <UpdatePainterStyle updatePainterStyle={props} />
         </div>
     );
 }

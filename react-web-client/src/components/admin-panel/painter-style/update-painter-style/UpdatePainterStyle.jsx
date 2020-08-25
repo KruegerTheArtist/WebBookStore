@@ -8,7 +8,7 @@ const UpdatePainterStyle = (props) => {
     
     let updatePainterStyle = () => {
         let painterStyle = props.painterStyles.painterStyles.find(ps => ps.name === oldName.current.value);
-        props.updatePainterStyle(painterStyle.id, newName.current.value);
+        props.updatePainterStyle.painterStyleMethods.updatePainterStyle(painterStyle.id, newName.current.value);
     }
 
     let clear = () => {
