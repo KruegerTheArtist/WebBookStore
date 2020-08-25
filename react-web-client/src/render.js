@@ -6,9 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import { getPainterStyle, deletePainterStyle, updatePainterStyle, setPainterStyle } from './redux/API/PainterStyles';
 import { setPainter, deletePainter, updatePainter, getPainterByCount } from './redux/API/Painter';
 import { addPublisher, getPublishersByCount, deletePublisher, updatePublisher } from './redux/API/Publisher';
+import { getCoverTypes, addCoverType, updateCoverType, deleteCoverType } from './redux/API/CoverTypes';
 
 import {
-  getCoverTypes, addCoverType, updateCoverType, deleteCoverType,
   addInterpreter, deleteInterpreter, updateInterpreter,
   addAuthor, updateAuthor, deleteAuthor,
   addBook, updateBook, deleteBook, initializeData
