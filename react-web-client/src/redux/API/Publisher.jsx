@@ -1,5 +1,6 @@
 import * as axios from "axios";
-import state, { initializeData, newGuid } from "../state";
+import state, { initializeData } from "../state";
+import { newGuid } from "../shared/Helper";
 
 export let addPublisher = (name) => {
     let publisher = {
