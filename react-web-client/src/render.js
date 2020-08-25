@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { getPainterStyle, deletePainterStyle, updatePainterStyle, setPainterStyle } from './redux/API/PainterStylesMethods';
+import { getPainterStyle, deletePainterStyle, updatePainterStyle, setPainterStyle } from './redux/API/PainterStyles';
+import { setPainter, deletePainter, updatePainter, getPainterByCount } from './redux/API/Painter';
 
 import {
-  setPainter, deletePainter, updatePainter,
-  getPainterByCount, addPublisher, getPublishersByCount, deletePublisher, updatePublisher,
+  addPublisher, getPublishersByCount, deletePublisher, updatePublisher,
   getCoverTypes, addCoverType, updateCoverType, deleteCoverType,
   addInterpreter, deleteInterpreter, updateInterpreter,
   addAuthor, updateAuthor, deleteAuthor,
