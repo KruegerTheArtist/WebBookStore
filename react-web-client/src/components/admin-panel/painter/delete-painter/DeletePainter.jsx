@@ -1,6 +1,7 @@
 import React from 'react';
-import "./../../AdminPanel.module.css";
+import "./../../AdminPanel.css";
 import { Component } from 'react';
+import SelectOption from '../../../shared/select-component/SelectOption';
 
 class DeletePainter extends Component {
 
@@ -10,30 +11,30 @@ class DeletePainter extends Component {
         data: []
     }
     componentDidMount() {
-        this.getPublishers(20);
+        this.getPainters(20);
     }
 
-    getPublishers = async (count) => {
-        const res = await this.props.updatePublisher.publisherMethods.getPublishersByCount(count);
-        res.data.previewPublishers.forEach(data => {
-            this.publishers.push(data);
+    getPainters = async (count) => {
+        const res = await this.props.deletePainter.painterMethods.getPainterByCount(count);
+        res.data.previewPainters.forEach(data => {
+            this.painters.push(data);
         });
         this.setState({ data: res.data })
     }
 
     deletePainter = () => {
-        let currentName = name.current.value;
-        props.deletePainter.painterMethods.deletePainter(currentName);
+        let id = this.painters.find(p => p.name === this.name.current.value);
+        this.props.deletePainter.painterMethods.deletePainter(id);
     }
     render() {
         return (
             <div className="add-form" >
                 <h3>Delete painter</h3>
-                <div>
-                    <input className="input" ref={name} placeholder="Имя художника" />
-                </div>
-                <div>
-                    <button className="button" onClick={deletePainter}>Delete</button>
+                <select className="select" ref={this.name}>
+                    {this.painters.map(data => { return <SelectOption key={data.id} name={data.name} /> })}
+                </select>
+                <div className="action-buttons">
+                    <button className="button" onClick={this.deletePainter}>Delete</button>
                 </div>
             </div >
         );

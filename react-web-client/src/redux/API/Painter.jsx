@@ -22,18 +22,12 @@ export let setPainter = (name, age, description, styleName) => {
     initializeData();
 }
 
-export let getPainterByCount = (count) => {
-    axios.get('https://localhost:44394/api/Painter/GetPainters/take/' + count + '/skip/0').then(response => {
-        console.log('get painter', response);
-        state.contentPage.painters = response.data.previewPainters;
-    })
-    return state.contentPage.painterStyles;
+export let getPainterByCount = async (count) => {
+    return await axios.get('https://localhost:44394/api/Painter/GetPainters/take/' + count + '/skip/0');
 }
 
-export let deletePainter = (name) => {
-    let painterId = state.contentPage.painters.find(ps => ps.name === name).id
-
-    axios.delete('https://localhost:44394/api/Painter/' + painterId).then(response => {
+export let deletePainter = (id) => {
+    axios.delete('https://localhost:44394/api/Painter/' + id).then(response => {
         console.log('delete painter', response);
     })
     initializeData();
