@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AddPainter.css";
+import "./../../AdminPanel.module.css";
 
 //TODO переделать выбор стиля художника на select или checkboxes
 const AddPainter = (props) => {

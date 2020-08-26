@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./DeletePublisher.css";
+import "./../../AdminPanel.module.css";
 import SelectOption from '../../../shared/select-component/SelectOption';
 
 class DeletePublisher extends Component {
@@ -29,7 +29,7 @@ class DeletePublisher extends Component {
         return (
             <div className="add-form">
                 <h3>Delete publisher</h3>
-                <select ref={this.name}>
+                <select className="select" ref={this.name}>
                     {this.publishers.map(data => { return <SelectOption key={data.id} name={data.name} /> })}
                 </select>
                 <div>

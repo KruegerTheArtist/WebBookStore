@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AddPainterStyle.css";
+import "./../../AdminPanel.module.css";
 
 const AddPainterStyle = (props) => {
     let name1 = React.createRef();

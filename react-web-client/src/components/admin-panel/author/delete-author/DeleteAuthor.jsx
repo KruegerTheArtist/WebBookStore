@@ -1,5 +1,5 @@
 import React from 'react';
-import "./DeleteAuthor.css";
+import "./../../AdminPanel.module.css";
 
 const DeleteAuthor = (props) => {
 

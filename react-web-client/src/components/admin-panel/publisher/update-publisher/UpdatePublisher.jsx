@@ -1,5 +1,5 @@
 import React from 'react';
-import "./UpdatePublisher.css";
+import "./../../AdminPanel.module.css";
 
 const UpdatePublisher = (props) => {
     let oldName = React.createRef();

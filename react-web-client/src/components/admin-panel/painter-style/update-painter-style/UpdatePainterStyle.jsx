@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./UpdatePainterStyle.css";
+import "./../../AdminPanel.module.css";
 import SelectOption from '../../../shared/select-component/SelectOption';
 
 class UpdatePainterStyle extends Component {

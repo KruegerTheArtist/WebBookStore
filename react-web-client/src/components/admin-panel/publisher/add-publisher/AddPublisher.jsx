@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AddPublisher.css";
+import "./../../AdminPanel.module.css";
 
 //TODO сделать выбор изданных книг (пока хардкод)
 const AddPublisher = (props) => {

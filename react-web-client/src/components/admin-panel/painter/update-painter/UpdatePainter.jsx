@@ -1,5 +1,5 @@
 import React from 'react';
-import "./UpdatePainter.css";
+import "./../../AdminPanel.module.css";
 
 const UpdatePainter = (props) => {
     let oldName = React.createRef();

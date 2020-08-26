@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./DeletePainterStyle.css";
+import "./../../AdminPanel.module.css";
 import SelectOption from '../../../shared/select-component/SelectOption';
 
 class DeletePainterStyle extends Component {

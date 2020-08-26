@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AddAuthor.css";
+import "./../../AdminPanel.module.css";
 
 const AddAuthor = (props) => {
     let name = React.createRef();
