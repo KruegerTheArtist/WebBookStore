@@ -21,3 +21,15 @@
 h3 {
     margin:  10px 3px 10px 15px;
 }
+
+.select {
+    padding: 4px;
+    font-size: 13px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.action-buttons {
+    margin-top: 15px;
+    text-align: end;
+}

@@ -18,7 +18,8 @@ export let getPainterStyle = async () => {
             state.contentPage.painterStyles.push(data);
         }
     });
-    return state.contentPage.painterStyles;
+    
+    return await axios.get('https://localhost:44394/api/PainterStyle/GetPainterStyles');
 }
 
 export let deletePainterStyle = (id) => {
