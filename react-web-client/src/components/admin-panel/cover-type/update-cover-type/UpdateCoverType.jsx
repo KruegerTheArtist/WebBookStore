@@ -1,5 +1,5 @@
 import React from 'react';
-import "./UpdateCoverType.css";
+import "./../../AdminPanel.module.css";
 
 const UpdateCoverType = (props) => {
     let oldName = React.createRef();

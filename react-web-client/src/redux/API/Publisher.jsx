@@ -17,27 +17,21 @@ export let addPublisher = (name) => {
     initializeData();
 }
 
-export let deletePublisher = (name) => {
-    let publisherId = state.contentPage.publishers.find(ps => ps.name === name).id
-
-    axios.delete('https://localhost:44394/api/Publisher/' + publisherId).then(response => {
+export let deletePublisher = (id) => {
+    axios.delete('https://localhost:44394/api/Publisher/' + id).then(response => {
         console.log('delete publisher', response);
     })
     initializeData();
 }
 
-export let getPublishersByCount = (count) => {
-    axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/' + count + '/skip/0').then(response => {
-        console.log('get publisher', response);
-        state.contentPage.publishers = response.data.previewPublishers;
-    })
-    return state.contentPage.publishers;
+export let getPublishersByCount = async (count) => {
+    // await axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/' + count + '/skip/0');
+    return await axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/' + count + '/skip/0');
 }
 
-export let updatePublisher = (oldName, name) => {
-    let publisherId = state.contentPage.publishers.find(ps => ps.name === oldName).id
+export let updatePublisher = (id, name) => {
     let publisher = {
-        id: publisherId,
+        id: id,
         name,
         booksIds: [
             newGuid()

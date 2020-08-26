@@ -1,5 +1,5 @@
 import React from 'react';
-import "./UpdateInterpreter.css";
+import "./../../AdminPanel.module.css";
 
 const UpdateInterpreter = (props) => {
     let oldName = React.createRef();

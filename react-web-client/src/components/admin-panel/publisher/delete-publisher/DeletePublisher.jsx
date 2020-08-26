@@ -1,31 +1,45 @@
-import React from 'react';
-import "./DeletePublisher.css";
+import React, { Component } from 'react';
+import "./../../AdminPanel.module.css";
+import SelectOption from '../../../shared/select-component/SelectOption';
 
-const DeletePublisher = (props) => {
-    let name = React.createRef();
-    
-    let deletePublisher = () => {
-        let currentName = name.current.value;
-        props.deletePublisher.publisherMethods.deletePublisher(currentName);
+class DeletePublisher extends Component {
+    name = React.createRef();
+    publishers = [];
+    state = {
+        data: []
+    }
+    componentDidMount() {
+        this.getPublishers(20);
     }
 
-    let clear = () => {
-        name.current.value = '';
+    getPublishers = async (count) => {
+        const res = await this.props.deletePublisher.publisherMethods.getPublishersByCount(count);
+        res.data.previewPublishers.forEach(data => {
+            this.publishers.push(data);
+          });
+        this.setState({ data: res.data })
     }
 
-    return (
-        <div className="add-form">
-            <h3>Delete publisher</h3>
-            <div>
-                <input className="input" ref={name} placeholder="Название издателя"/>
-            </div>
-            <div>
-                <button className="button" onClick={deletePublisher}>delete</button>
-                <button className="button" onClick={clear}>Clear</button>
-            </div>
+    deletePublisher = () => {
+        const id = this.publishers.find(x => x.name === this.name.current.value).id;
+        this.props.deletePublisher.publisherMethods.deletePublisher(id);
+    }
 
-        </div >
-    );
+    render() {
+        return (
+            <div className="add-form">
+                <h3>Delete publisher</h3>
+                <select className="select" ref={this.name}>
+                    {this.publishers.map(data => { return <SelectOption key={data.id} name={data.name} /> })}
+                </select>
+                <div>
+                    <button className="button" onClick={this.deletePublisher}>delete</button>
+                </div>
+
+            </div >
+        );
+    }
+
 }
 
 export default DeletePublisher;

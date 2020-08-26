@@ -1,5 +1,5 @@
 import React from 'react';
-import "./DeleteCoverType.css";
+import "./../../AdminPanel.module.css";
 
 const DeleteCoverType = (props) => {
 

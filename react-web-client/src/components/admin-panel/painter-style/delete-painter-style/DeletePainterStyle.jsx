@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import "./DeletePainterStyle.css";
-
-let Child = (props) => {
-  return (
-    <option>{props.name}
-    </option>
-  );
-};
+import "./../../AdminPanel.module.css";
+import SelectOption from '../../../shared/select-component/SelectOption';
 
 class DeletePainterStyle extends Component {
   name = React.createRef();
@@ -38,7 +32,7 @@ class DeletePainterStyle extends Component {
       < div className="add-form" >
         <h3>Delete painter style</h3>
         <select className="select" ref={this.name}>
-          {this.painterStyles.map((ps) => { return <Child key={ps.id} name={ps.name} /> })}
+          {this.painterStyles.map((ps) => { return <SelectOption key={ps.id} name={ps.name} /> })}
         </select>
         <div className="action-buttons">
           <button className="button" onClick={this.deletePainter}>delete</button>

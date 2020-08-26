@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AddInterpreter.css";
+import "./../../AdminPanel.module.css";
 
 const AddInterpreter = (props) => {
     let name = React.createRef();

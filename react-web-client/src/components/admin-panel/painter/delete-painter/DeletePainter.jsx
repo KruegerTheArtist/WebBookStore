@@ -1,5 +1,5 @@
 import React from 'react';
-import "./DeletePainter.css";
+import "./../../AdminPanel.module.css";
 
 const DeletePainter = (props) => {
 

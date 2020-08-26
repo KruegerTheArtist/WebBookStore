@@ -1,5 +1,5 @@
 import React from 'react';
-import "./DeleteBook.css";
+import "./../../AdminPanel.module.css";
 
 const DeleteBook = (props) => {
 
