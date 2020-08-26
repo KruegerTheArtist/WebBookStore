@@ -6,7 +6,7 @@ import CoverTypeForm from './cover-type/CoverTypeForm';
 import InterpreterForm from './interpreter/InterpreterForm';
 import AuthorForm from './author/AuthorForm';
 import BookForm from './book/BookForm';
-import './AdminPanel.module.css';
+import './AdminPanel.css';
 
 
 

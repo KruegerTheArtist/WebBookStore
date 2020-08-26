@@ -29,10 +29,9 @@ export let getPublishersByCount = async (count) => {
     return await axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/' + count + '/skip/0');
 }
 
-export let updatePublisher = (oldName, name) => {
-    let publisherId = state.contentPage.publishers.find(ps => ps.name === oldName).id
+export let updatePublisher = (id, name) => {
     let publisher = {
-        id: publisherId,
+        id: id,
         name,
         booksIds: [
             newGuid()
