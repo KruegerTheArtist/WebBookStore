@@ -33,12 +33,11 @@ export let deletePainter = (id) => {
     initializeData();
 }
 
-export let updatePainter = (oldName, name, age, description, styleName) => {
-    let oldPainter = state.contentPage.painters.find(ps => ps.name === oldName)
+export let updatePainter = (id, name, age, description, styleName) => {
     let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
 
     let painter = {
-        id: oldPainter.id,
+        id,
         name,
         age,
         description,

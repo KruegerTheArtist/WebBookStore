@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "./../../AdminPanel.module.css";
+import SelectOption from '../../../shared/select-component/SelectOption';
 
+//TODO Переделать выбор стилей под конкретного художника
 class UpdatePainter extends Component {
     oldName = React.createRef();
     name = React.createRef();
@@ -15,6 +17,7 @@ class UpdatePainter extends Component {
     }
     componentDidMount() {
         this.getPainters(20);
+        // this.getPainterStyles();
     }
 
     getPainters = async (count) => {
@@ -25,14 +28,22 @@ class UpdatePainter extends Component {
         this.setState({ data: res.data })
     }
 
+    // getPainterStyles = async () => {
+    //     const res = await this.props.deletePainterStyle.painterStyleMethods.getPainterStyle();
+    //     res.data.forEach(data => {
+    //       this.painterStyles.push(data);
+    //     });
+    //     this.setState({ data: this.painterStyles })
+    //   }
+
     add = () => {
-        let currentoldName = this.oldName.current.value;
+        let id = this.painters.find(p => p.name === this.name.current.value);
         let currentName = this.name.current.value;
         let currentAge = this.age.current.value;
         let currentDescription = this.description.current.value;
         let currentStyle = this.style.current.value;
 
-        this.props.updatePainter.painterMethods.updatePainter(currentoldName, currentName, currentAge, currentDescription, currentStyle);
+        this.props.updatePainter.painterMethods.updatePainter(id, currentName, currentAge, currentDescription, currentStyle);
     }
 
     clear = () => {
@@ -48,9 +59,10 @@ class UpdatePainter extends Component {
             <div className="add-form">
                 <h3>Update painter</h3>
                 <div>
-                    <input className="input" ref={this.oldName} placeholder="Старое художника" />
+                    <select className="select" ref={this.oldName}>
+                        {this.painters.map(data => <SelectOption key={data.id} name={data.name} />)}
+                    </select>
                     <input className="input" ref={this.name} placeholder="Имя художника" />
-
                 </div>
                 <div>
                     <input className="input" ref={this.age} placeholder="Лет художнику" />
