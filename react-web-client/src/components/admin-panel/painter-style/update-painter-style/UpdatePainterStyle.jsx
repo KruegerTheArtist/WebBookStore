@@ -1,36 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
 import "./UpdatePainterStyle.css";
 
-const UpdatePainterStyle = (props) => {
-    let oldName = React.createRef();
-    let newName = React.createRef();
-
-    
-    let updatePainterStyle = () => {
-        let painterStyle = props.painterStyles.painterStyles.find(ps => ps.name === oldName.current.value);
-        props.updatePainterStyle.painterStyleMethods.updatePainterStyle(painterStyle.id, newName.current.value);
-    }
-
-    let clear = () => {
-        oldName.current.value = '';
-    }
-
+let Child = (props) => {
     return (
-        <div className="add-form">
-            <h3>Update painter style</h3>
-            <div>
-                <input className="input" ref={oldName} placeholder="Старое название жанра"/>
-            </div>
-            <div>
-                <input className="input" ref={newName} placeholder="Новое название жанра"/>
-            </div>
-            <div>
-                <button className="button" onClick={updatePainterStyle}>update</button>
-                <button className="button" onClick={clear}>Clear</button>
-            </div>
-
-        </div >
+        <option>{props.name}
+        </option>
     );
+};
+class UpdatePainterStyle extends Component {
+    oldName = React.createRef();
+    newName = React.createRef();
+    painterStyles = []
+
+    state = {
+        data: []
+    };
+
+    componentDidMount() {
+        this.getPainterStyles();
+    }
+
+    getPainterStyles = async () => {
+        const res = await this.props.updatePainterStyle.painterStyleMethods.getPainterStyle();
+        res.data.forEach(data => {
+            this.painterStyles.push(data);
+        });
+        this.setState({ data: this.painterStyles })
+    }
+
+    updatePainterStyle = () => {
+        const id = this.painterStyles.find(x => x.name === this.oldName.current.value).id;
+        this.props.updatePainterStyle.painterStyleMethods.updatePainterStyle(id, this.newName.current.value);
+    }
+
+    clear = () => {
+        this.newName.current.value = '';
+    }
+
+    render() {
+        return (
+            <div className="add-form">
+                <h3>Update painter style</h3>
+                <select className="select" ref={this.oldName}>
+                    {this.painterStyles.map((ps) => { return <Child key={ps.id} name={ps.name} /> })}
+                </select>
+                <div>
+                    <input className="input" ref={this.newName} placeholder="Новое название жанра" />
+                </div>
+                <div className="action-buttons">
+                    <button className="button" onClick={this.updatePainterStyle}>Update</button>
+                    <button className="button" onClick={this.clear}>Clear</button>
+                </div>
+
+            </div >
+        );
+    }
+
 }
 
 export default UpdatePainterStyle;
