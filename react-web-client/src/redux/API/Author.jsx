@@ -1,9 +1,12 @@
 import * as axios from "axios";
 import state, { initializeData } from "../state";
 import { newGuid } from "../shared/Helper";
+import config from '../../assets/settings.json';
+
+const controllerName = 'Author';
 
 export let getAuthorByCount = (count) => {
-    axios.get('https://localhost:44394/api/Author/GetAuthors/take/' + count + '/skip/0').then(response => {
+    axios.get(getUrl() + '/GetAuthors/take/' + count + '/skip/0').then(response => {
         console.log('get authors', response);
         state.contentPage.authors = response.data.previewAuthors;
     })
@@ -20,7 +23,7 @@ export let addAuthor = (name, age, description) => {
             newGuid()
         ]
     }
-    axios.post('https://localhost:44394/api/Author', author).then(response => {
+    axios.post(getUrl(), author).then(response => {
         console.log('add author', response);
     })
 
@@ -39,7 +42,7 @@ export let updateAuthor = (oldName, name, age, description) => {
             newGuid()
         ]
     }
-    axios.put('https://localhost:44394/api/Author/', author).then(response => {
+    axios.put(getUrl(), author).then(response => {
         console.log('update author', response);
     })
 
@@ -49,8 +52,12 @@ export let updateAuthor = (oldName, name, age, description) => {
 export let deleteAuthor = (name) => {
     let authorId = state.contentPage.authors.find(ps => ps.name === name).id
 
-    axios.delete('https://localhost:44394/api/Author/' + authorId).then(response => {
+    axios.delete(getUrl() + '/' + authorId).then(response => {
         console.log('delete author', response);
     })
     initializeData();
+}
+
+let getUrl = () => {
+    return config.apiUrl + controllerName;
 }
