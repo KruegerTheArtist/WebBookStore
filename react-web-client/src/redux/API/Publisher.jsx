@@ -2,6 +2,7 @@ import * as axios from "axios";
 import { initializeData } from "../state";
 import { newGuid } from "../shared/Helper";
 import config from '../../assets/settings.json';
+import { combineUrl } from "../shared/UrlHelper";
 
 const controllerName = 'Publisher';
 
@@ -13,7 +14,7 @@ export let addPublisher = (name) => {
             newGuid()
         ]
     }
-    axios.post(getUrl(), publisher).then(response => {
+    axios.post(combineUrl(config.apiUrl, controllerName), publisher).then(response => {
         console.log('add publisher', response);
     })
 
@@ -21,14 +22,14 @@ export let addPublisher = (name) => {
 }
 
 export let deletePublisher = (id) => {
-    axios.delete(getUrl() + '/' + id).then(response => {
+    axios.delete(combineUrl(config.apiUrl, controllerName) + '/' + id).then(response => {
         console.log('delete publisher', response);
     })
     initializeData();
 }
 
 export let getPublishersByCount = async (count) => {
-    return await axios.get(getUrl() + '/GetPublishers/take/' + count + '/skip/0');
+    return await axios.get(combineUrl(config.apiUrl, controllerName) + '/GetPublishers/take/' + count + '/skip/0');
 }
 
 export let updatePublisher = (id, name) => {
@@ -39,13 +40,9 @@ export let updatePublisher = (id, name) => {
             newGuid()
         ]
     }
-    axios.put(getUrl(), publisher).then(response => {
+    axios.put(combineUrl(config.apiUrl, controllerName), publisher).then(response => {
         console.log('update publisher', response);
     })
 
     initializeData();
-}
-
-let getUrl = () => {
-    return config.apiUrl + controllerName;
 }

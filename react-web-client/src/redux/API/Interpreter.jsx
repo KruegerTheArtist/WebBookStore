@@ -2,11 +2,12 @@ import * as axios from "axios";
 import state, { initializeData } from "../state";
 import { newGuid } from "../shared/Helper";
 import config from '../../assets/settings.json';
+import { combineUrl } from "../shared/UrlHelper";
 
 const controllerName = 'Interpreter';
 
 export let getInterpretersByCount = async (count) => {
-    return await axios.get(getUrl() + '/GetInterpreters/take/' + count + '/skip/0');
+    return await axios.get(combineUrl(config.apiUrl, controllerName) + '/GetInterpreters/take/' + count + '/skip/0');
 }
 
 export let addInterpreter = (name, age, description) => {
@@ -19,7 +20,7 @@ export let addInterpreter = (name, age, description) => {
             newGuid()
         ]
     }
-    axios.post(getUrl(), interpreter).then(response => {
+    axios.post(combineUrl(config.apiUrl, controllerName), interpreter).then(response => {
         console.log('add interpreter', response);
     })
 
@@ -29,7 +30,7 @@ export let addInterpreter = (name, age, description) => {
 export let deleteInterpreter = (name) => {
     let interpreterId = state.contentPage.interpreters.find(ps => ps.name === name).id
 
-    axios.delete(getUrl() + '/' + interpreterId).then(response => {
+    axios.delete(combineUrl(config.apiUrl, controllerName) + '/' + interpreterId).then(response => {
         console.log('delete interpreter', response);
     })
     initializeData();
@@ -46,13 +47,9 @@ export let updateInterpreter = (id, name, age, description) => {
         ]
     }
 
-    axios.put(getUrl(), interpreter).then(response => {
+    axios.put(combineUrl(config.apiUrl, controllerName), interpreter).then(response => {
         console.log('update interpreter', response);
     })
 
     initializeData();
-}
-
-let getUrl = () => {
-    return config.apiUrl + controllerName;
 }
