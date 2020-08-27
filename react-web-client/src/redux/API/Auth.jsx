@@ -1,6 +1,4 @@
 import * as axios from "axios";
-import state, { initializeData } from "../state";
-import { newGuid } from "../shared/Helper";
 import { combineUrl } from "../shared/UrlHelper";
 
 const controllerName = 'Auth';
@@ -10,8 +8,9 @@ export let login = async (login, password) => {
         login,
         password
     }
-    await axios.post(combineUrl(controllerName) + 'Authorize', user).then(response => {
+    await axios.post(combineUrl(controllerName) + '/Authorize', user).then(response => {
         console.log('login', response);
+        return response;
     });
 }
 
@@ -19,12 +18,12 @@ export let login = async (login, password) => {
 //     return await axios.get(combineUrl(controllerName) + '/GetAuthors/take/' + count + '/skip/0');
 // }
 
-export let register = (login, password) => {
+export let register = async (login, password) => {
     let user = {
         login,
         password
     }
-    await axios.post(combineUrl(controllerName) + 'Register', user).then(response => {
+    await axios.post(combineUrl(controllerName) + '/Register', user).then(response => {
         console.log('register', response);
     });
 }

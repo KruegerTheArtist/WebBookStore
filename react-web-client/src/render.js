@@ -10,7 +10,12 @@ import { getCoverTypes, addCoverType, updateCoverType, deleteCoverType } from '.
 import { addInterpreter, deleteInterpreter, updateInterpreter, getInterpretersByCount } from './redux/API/Interpreter';
 import { addAuthor, updateAuthor, deleteAuthor } from './redux/API/Author';
 import { addBook, updateBook, deleteBook } from './redux/API/Book';
+import { login, register, getToken } from './redux/API/Auth';
+
 import { initializeData } from './redux/state';
+import Login from './authorization/Login';
+import AuthForm from './authorization/AuthForm';
+import { BrowserRouter } from 'react-router-dom';
 
 export let rerenderEntireTree = (state) => {
   let painterStyleMethods = {
@@ -59,9 +64,19 @@ export let rerenderEntireTree = (state) => {
     updateBook,
     deleteBook
   }
+
+  let authMethods = {
+    login,
+    register,
+    getToken
+  }
+
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} painterStyleMethods={painterStyleMethods} bookMethods={bookMethods} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} />
+      <BrowserRouter>
+        <AuthForm authMethods={authMethods} path='/login' />
+        {/* <App state={state} painterStyleMethods={painterStyleMethods} bookMethods={bookMethods} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} /> */}
+      </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );
