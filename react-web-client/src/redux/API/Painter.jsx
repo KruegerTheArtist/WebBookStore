@@ -1,6 +1,9 @@
 import * as axios from "axios";
 import state, { initializeData } from "../state";
 import { newGuid } from "../shared/Helper";
+import config from '../../assets/settings.json';
+
+const controllerName = 'Painter';
 
 export let setPainter = (name, age, description, styleName) => {
     let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
@@ -15,7 +18,7 @@ export let setPainter = (name, age, description, styleName) => {
             newGuid()
         ]
     }
-    axios.post('https://localhost:44394/api/Painter', painter).then(response => {
+    axios.post(getUrl(), painter).then(response => {
         console.log('add painter', response);
     })
 
@@ -23,11 +26,11 @@ export let setPainter = (name, age, description, styleName) => {
 }
 
 export let getPainterByCount = async (count) => {
-    return await axios.get('https://localhost:44394/api/Painter/GetPainters/take/' + count + '/skip/0');
+    return await axios.get(getUrl() + '/GetPainters/take/' + count + '/skip/0');
 }
 
 export let deletePainter = (id) => {
-    axios.delete('https://localhost:44394/api/Painter/' + id).then(response => {
+    axios.delete(getUrl() + '/' + id).then(response => {
         console.log('delete painter', response);
     })
     initializeData();
@@ -46,9 +49,13 @@ export let updatePainter = (id, name, age, description, styleName) => {
             newGuid()
         ]
     }
-    axios.put('https://localhost:44394/api/Painter/', painter).then(response => {
+    axios.put(getUrl(), painter).then(response => {
         console.log('update painter', response);
     })
 
     initializeData();
+}
+
+let getUrl = () => {
+    return config.apiUrl + controllerName;
 }
