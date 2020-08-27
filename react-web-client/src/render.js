@@ -7,7 +7,7 @@ import { getPainterStyle, deletePainterStyle, updatePainterStyle, setPainterStyl
 import { setPainter, deletePainter, updatePainter, getPainterByCount } from './redux/API/Painter';
 import { addPublisher, getPublishersByCount, deletePublisher, updatePublisher } from './redux/API/Publisher';
 import { getCoverTypes, addCoverType, updateCoverType, deleteCoverType } from './redux/API/CoverTypes';
-import { addInterpreter, deleteInterpreter, updateInterpreter } from './redux/API/Interpreter';
+import { addInterpreter, deleteInterpreter, updateInterpreter, getInterpretersByCount } from './redux/API/Interpreter';
 import { addAuthor, updateAuthor, deleteAuthor } from './redux/API/Author';
 import { addBook, updateBook, deleteBook } from './redux/API/Book';
 import { initializeData } from './redux/state';
@@ -44,7 +44,8 @@ export let rerenderEntireTree = (state) => {
   let interpreterMethods = {
     addInterpreter,
     deleteInterpreter,
-    updateInterpreter
+    updateInterpreter,
+    getInterpretersByCount
   }
 
   let authorMethods = {
