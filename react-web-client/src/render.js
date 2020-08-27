@@ -13,9 +13,11 @@ import { addBook, updateBook, deleteBook } from './redux/API/Book';
 import { login, register, getToken } from './redux/API/Auth';
 
 import { initializeData } from './redux/state';
-import Login from './authorization/Login';
 import AuthForm from './authorization/AuthForm';
 import { BrowserRouter } from 'react-router-dom';
+
+import state from './redux/state';
+
 
 export let rerenderEntireTree = (state) => {
   let painterStyleMethods = {
@@ -74,7 +76,7 @@ export let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <AuthForm authMethods={authMethods} path='/login' />
+        <AuthForm authMethods={authMethods} path='/login' state={state} />
         {/* <App state={state} painterStyleMethods={painterStyleMethods} bookMethods={bookMethods} authorMethods={authorMethods} interpreterMethods={interpreterMethods} painterMethods={painterMethods} publisherMethods={publisherMethods} coverTypeMethods={coverTypeMethods} /> */}
       </BrowserRouter>
     </React.StrictMode>,

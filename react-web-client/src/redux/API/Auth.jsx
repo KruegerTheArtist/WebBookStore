@@ -8,10 +8,7 @@ export let login = async (login, password) => {
         login,
         password
     }
-    await axios.post(combineUrl(controllerName) + '/Authorize', user).then(response => {
-        console.log('login', response);
-        return response;
-    });
+    return await axios.post(combineUrl(controllerName) + '/Authorize', user);
 }
 
 // export let logout = async (count) => {

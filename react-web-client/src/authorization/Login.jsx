@@ -5,11 +5,19 @@ import { NavLink } from 'react-router-dom';
 class Login extends Component {
     name = React.createRef();
     password = React.createRef();
+    user = {};
 
-    login = () => {
+    componentDidMount = () => {
+        this.login();
+        console.log('SSSSSSSSSS111S22', this.user);
+
+    }
+
+    login = async () => {
         let currentName = this.name.current.value;
         let currentPassword = this.password.current.value;
-        let log = this.props.authMethods.login(currentName, currentPassword);
+        let log = await this.props.authMethods.login(currentName, currentPassword);
+        this.user = log.data
         console.log('SSSSSSSSSSS22', log);
 
     }

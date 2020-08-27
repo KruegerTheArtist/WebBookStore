@@ -27,7 +27,8 @@ let state = {
         painters: [],
         publishers: [],
         interpreters: [],
-        authors: []
+        authors: [],
+        user: {}
     }
 };
 

@@ -11,7 +11,7 @@ class AuthForm extends Component {
         return (
             <div>
                 <Route path={this.props.path} render={() => <Login filter="register" authMethods={this.props.authMethods} />} />
-                <Route path='/register' render={() => <Register filter="login" authMethods={this.props.authMethods} />} />
+                <Route path='/register' render={() => <Register filter="login" authMethods={this.props.authMethods} state={this.props.state} />} />
             </div>
         );
     }
