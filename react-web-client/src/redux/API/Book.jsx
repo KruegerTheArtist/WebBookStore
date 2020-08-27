@@ -1,23 +1,12 @@
 import * as axios from "axios";
 import state, { initializeData } from "../state";
 import { newGuid } from "../shared/Helper";
-import config from '../../assets/settings.json';
 import { combineUrl } from "../shared/UrlHelper";
 
 const controllerName = 'Book';
 
-export let getBooksByCount = (count) => {
-    axios.get(combineUrl(config.apiUrl, controllerName) + '/GetBooks/take/' + count + '/skip/0').then(response => {
-        console.log('get books', response);
-        if (state.contentPage.books.length < 1) {
-            state.contentPage.books = response.data.previewBooks;
-        } else {
-            response.data.previewBooks.forEach(element => {
-                state.contentPage.books.push(element);
-            });
-        }
-    })
-    return state.contentPage.books;
+export let getBooksByCount = async (count) => {
+    return await axios.get(combineUrl(controllerName) + '/GetBooks/take/' + count + '/skip/0');
 }
 
 export let addBook = (name, publishDate, coverTypeName, description, format, countPage, price, weight, duplicate, ageLimit, publisherName) => {
@@ -50,7 +39,7 @@ export let addBook = (name, publishDate, coverTypeName, description, format, cou
             newGuid()
         ]
     }
-    axios.post(combineUrl(config.apiUrl, controllerName), book).then(response => {
+    axios.post(combineUrl(controllerName), book).then(response => {
         console.log('add book', response);
     })
 
@@ -89,7 +78,7 @@ export let updateBook = (oldName, name, publishDate, coverTypeName, description,
             newGuid()
         ]
     }
-    axios.put(combineUrl(config.apiUrl, controllerName), book).then(response => {
+    axios.put(combineUrl(controllerName), book).then(response => {
         console.log('update book', response);
     })
 
@@ -99,7 +88,7 @@ export let updateBook = (oldName, name, publishDate, coverTypeName, description,
 export let deleteBook = (name) => {
     let bookId = state.contentPage.books.find(ps => ps.name === name).id
 
-    axios.delete(combineUrl(config.apiUrl, controllerName) + '/' + bookId).then(response => {
+    axios.delete(combineUrl(controllerName) + '/' + bookId).then(response => {
         console.log('delete book', response);
     })
     initializeData();

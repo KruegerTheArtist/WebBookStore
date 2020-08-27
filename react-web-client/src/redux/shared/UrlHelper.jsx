@@ -1,5 +1,7 @@
-export let combineUrl = (baseHost, resource) => {
-    let result = addTrailingSlash(baseHost);
+import config from '../../assets/settings.json';
+
+export let combineUrl = (resource) => {
+    let result = addTrailingSlash(config.apiUrl);
     result = result + removeLeadingSlash(resource);
     return result;
 }
