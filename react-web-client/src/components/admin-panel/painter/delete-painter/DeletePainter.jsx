@@ -1,31 +1,45 @@
 import React from 'react';
-import "./../../AdminPanel.module.css";
+import "./../../AdminPanel.css";
+import { Component } from 'react';
+import SelectOption from '../../../shared/select-component/SelectOption';
 
-const DeletePainter = (props) => {
+class DeletePainter extends Component {
 
-    let name = React.createRef();
-
-    let deletePainter = () => {
-        let currentName = name.current.value;
-        props.deletePainter.painterMethods.deletePainter(currentName);
+    name = React.createRef();
+    painters = [];
+    state = {
+        data: []
+    }
+    componentDidMount() {
+        this.getPainters(20);
     }
 
-    let clear = () => {
-        name.current.value = '';
+    getPainters = async (count) => {
+        const res = await this.props.deletePainter.painterMethods.getPainterByCount(count);
+        res.data.previewPainters.forEach(data => {
+            this.painters.push(data);
+        });
+        this.setState({ data: res.data })
     }
 
-    return (
-        <div className="add-form">
-            <h3>Delete painter</h3>
-            <div>
-                <input className="input" ref={name} placeholder="Имя художника" />
-            </div>
-            <div>
-                <button className="button" onClick={deletePainter}>Delete</button>
-                <button className="button" onClick={clear}>Clear</button>
-            </div>
-        </div >
-    );
+    deletePainter = () => {
+        let id = this.painters.find(p => p.name === this.name.current.value);
+        this.props.deletePainter.painterMethods.deletePainter(id);
+    }
+    render() {
+        return (
+            <div className="add-form" >
+                <h3>Delete painter</h3>
+                <select className="select" ref={this.name}>
+                    {this.painters.map(data => { return <SelectOption key={data.id} name={data.name} /> })}
+                </select>
+                <div className="action-buttons">
+                    <button className="button" onClick={this.deletePainter}>Delete</button>
+                </div>
+            </div >
+        );
+    }
+
 }
 
 export default DeletePainter;
