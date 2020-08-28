@@ -1,6 +1,13 @@
 import * as axios from "axios";
-import state, { initializeData } from "../state";
+import { initializeData } from "../state";
 import { newGuid } from "../shared/Helper";
+import { combineUrl } from "../shared/UrlHelper";
+
+const controllerName = 'Publisher';
+
+export let getPublishersByCount = async (count) => {
+    return await axios.get(combineUrl(controllerName) + '/GetPublishers/take/' + count + '/skip/0');
+}
 
 export let addPublisher = (name) => {
     let publisher = {
@@ -10,7 +17,7 @@ export let addPublisher = (name) => {
             newGuid()
         ]
     }
-    axios.post('https://localhost:44394/api/Publisher', publisher).then(response => {
+    axios.post(combineUrl(controllerName), publisher).then(response => {
         console.log('add publisher', response);
     })
 
@@ -18,16 +25,12 @@ export let addPublisher = (name) => {
 }
 
 export let deletePublisher = (id) => {
-    axios.delete('https://localhost:44394/api/Publisher/' + id).then(response => {
+    axios.delete(combineUrl(controllerName) + '/' + id).then(response => {
         console.log('delete publisher', response);
     })
     initializeData();
 }
 
-export let getPublishersByCount = async (count) => {
-    // await axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/' + count + '/skip/0');
-    return await axios.get('https://localhost:44394/api/Publisher/GetPublishers/take/' + count + '/skip/0');
-}
 
 export let updatePublisher = (id, name) => {
     let publisher = {
@@ -37,7 +40,7 @@ export let updatePublisher = (id, name) => {
             newGuid()
         ]
     }
-    axios.put('https://localhost:44394/api/Publisher/', publisher).then(response => {
+    axios.put(combineUrl(controllerName), publisher).then(response => {
         console.log('update publisher', response);
     })
 
