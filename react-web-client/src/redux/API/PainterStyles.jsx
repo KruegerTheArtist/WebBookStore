@@ -1,29 +1,32 @@
 import * as axios from "axios";
-import state, { initializeData } from "../state";
+import store from "../state";
 import { newGuid } from "../shared/Helper";
 import { combineUrl } from "../shared/UrlHelper";
 
 const controllerName = 'PainterStyle';
 
 export let setPainterStyle = (painterStyle) => {
-    state.contentPage.painterStyles.push({ id: newGuid(), name: painterStyle });
+    store.getState().contentPage.painterStyles.push({ id: newGuid(), name: painterStyle });
     axios.post(combineUrl(controllerName), { id: newGuid(), name: painterStyle }).then(response => {
         console.log('add painter style', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let getPainterStyle = async () => {
-    return await axios.get(combineUrl(controllerName) + '/GetPainterStyles');
+    let res = await axios.get(combineUrl(controllerName) + '/GetPainterStyles');
+    store.dispatch({type: 'get', data: res.data.styles});
+
+    return res;
 }
 
-export let deletePainterStyle = (id) => {
+export let deletePainterStyle = async (id) => {
     axios.delete(combineUrl(controllerName) + '/' + id).then(response => {
         console.log('delete painter style', response);
     })
-
-    initializeData();
+    let res = await getPainterStyle();
+    store.dispatch({type: 'get', data: res.data.styles});
 }
 
 export let updatePainterStyle = (id, name) => {
@@ -31,5 +34,5 @@ export let updatePainterStyle = (id, name) => {
         console.log('update painter style', response);
     })
 
-    initializeData();
+    store.initializeData();
 }

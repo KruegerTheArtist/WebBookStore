@@ -16,7 +16,8 @@ class DeletePainterStyle extends Component {
 
   getPainterStyles = async () => {
     const res = await this.props.deletePainterStyle.painterStyleMethods.getPainterStyle();
-    res.data.forEach(data => {
+    console.log('sssss',this.props);
+    res.data.styles.forEach(data => {
       this.painterStyles.push(data);
     });
     this.setState({ data: this.painterStyles })

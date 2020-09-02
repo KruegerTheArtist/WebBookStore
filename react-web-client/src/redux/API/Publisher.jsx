@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import { initializeData } from "../state";
+import store from "../state";
 import { newGuid } from "../shared/Helper";
 import { combineUrl } from "../shared/UrlHelper";
 
@@ -21,14 +21,14 @@ export let addPublisher = (name) => {
         console.log('add publisher', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let deletePublisher = (id) => {
     axios.delete(combineUrl(controllerName) + '/' + id).then(response => {
         console.log('delete publisher', response);
     })
-    initializeData();
+    store.initializeData();
 }
 
 
@@ -44,5 +44,5 @@ export let updatePublisher = (id, name) => {
         console.log('update publisher', response);
     })
 
-    initializeData();
+    store.initializeData();
 }

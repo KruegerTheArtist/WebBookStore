@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import state, { initializeData } from "../state";
+import store from "../state";
 import { newGuid } from "../shared/Helper";
 import { combineUrl } from "../shared/UrlHelper";
 
@@ -10,8 +10,8 @@ export let getBooksByCount = async (count) => {
 }
 
 export let addBook = (name, publishDate, coverTypeName, description, format, countPage, price, weight, duplicate, ageLimit, publisherName) => {
-    let coverTypeId = state.contentPage.coverTypes.find(ct => ct.name === coverTypeName).id;
-    let publisherId = state.contentPage.publishers.find(p => p.name === publisherName).id;
+    let coverTypeId = store.getState().contentPage.coverTypes.find(ct => ct.name === coverTypeName).id;
+    let publisherId = store.getState().contentPage.publishers.find(p => p.name === publisherName).id;
 
     let book = {
         id: newGuid(),
@@ -43,14 +43,14 @@ export let addBook = (name, publishDate, coverTypeName, description, format, cou
         console.log('add book', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let updateBook = (oldName, name, publishDate, coverTypeName, description, format, countPage, price, weight, duplicate, ageLimit, publisherName) => {
-    let oldBook = state.contentPage.books.find(b => b.name === oldName)
+    let oldBook = store.getState().contentPage.books.find(b => b.name === oldName)
 
-    let coverTypeId = state.contentPage.coverTypes.find(ct => ct.name === coverTypeName).id;
-    let publisherId = state.contentPage.publishers.find(p => p.name === publisherName).id;
+    let coverTypeId = store.getState().contentPage.coverTypes.find(ct => ct.name === coverTypeName).id;
+    let publisherId = store.getState().contentPage.publishers.find(p => p.name === publisherName).id;
 
     let book = {
         id: oldBook.id,
@@ -82,14 +82,14 @@ export let updateBook = (oldName, name, publishDate, coverTypeName, description,
         console.log('update book', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let deleteBook = (name) => {
-    let bookId = state.contentPage.books.find(ps => ps.name === name).id
+    let bookId = store.getState().contentPage.books.find(ps => ps.name === name).id
 
     axios.delete(combineUrl(controllerName) + '/' + bookId).then(response => {
         console.log('delete book', response);
     })
-    initializeData();
+    store.initializeData();
 }

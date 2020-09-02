@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import state, { initializeData } from "../state";
+import store from "../state";
 import { newGuid } from "../shared/Helper";
 import { combineUrl } from "../shared/UrlHelper";
 
@@ -10,7 +10,7 @@ export let getPainterByCount = async (count) => {
 }
 
 export let setPainter = (name, age, description, styleName) => {
-    let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+    let styleId = store.getState().contentPage.painterStyles.find(ps => ps.name === styleName).id
 
     let painter = {
         id: newGuid(),
@@ -26,18 +26,18 @@ export let setPainter = (name, age, description, styleName) => {
         console.log('add painter', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let deletePainter = (id) => {
     axios.delete(combineUrl(controllerName) + '/' + id).then(response => {
         console.log('delete painter', response);
     })
-    initializeData();
+    store.initializeData();
 }
 
 export let updatePainter = (id, name, age, description, styleName) => {
-    let styleId = state.contentPage.painterStyles.find(ps => ps.name === styleName).id
+    let styleId = store.getState().contentPage.painterStyles.find(ps => ps.name === styleName).id
 
     let painter = {
         id,
@@ -53,5 +53,5 @@ export let updatePainter = (id, name, age, description, styleName) => {
         console.log('update painter', response);
     })
 
-    initializeData();
+    store.initializeData();
 }

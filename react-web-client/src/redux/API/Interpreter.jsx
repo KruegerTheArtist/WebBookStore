@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import state, { initializeData } from "../state";
+import store from "../state";
 import { newGuid } from "../shared/Helper";
 import { combineUrl } from "../shared/UrlHelper";
 
@@ -23,16 +23,16 @@ export let addInterpreter = (name, age, description) => {
         console.log('add interpreter', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let deleteInterpreter = (name) => {
-    let interpreterId = state.contentPage.interpreters.find(ps => ps.name === name).id
+    let interpreterId = store.getState().contentPage.interpreters.find(ps => ps.name === name).id
 
     axios.delete(combineUrl(controllerName) + '/' + interpreterId).then(response => {
         console.log('delete interpreter', response);
     })
-    initializeData();
+    store.initializeData();
 }
 
 export let updateInterpreter = (id, name, age, description) => {
@@ -50,5 +50,5 @@ export let updateInterpreter = (id, name, age, description) => {
         console.log('update interpreter', response);
     })
 
-    initializeData();
+    store.initializeData();
 }

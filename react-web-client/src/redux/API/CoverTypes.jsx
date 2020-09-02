@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import state, { initializeData } from "../state";
+import store from "../state";
 import { newGuid } from "../shared/Helper";
 import { combineUrl } from "../shared/UrlHelper";
 
@@ -18,11 +18,11 @@ export let addCoverType = (name) => {
         console.log('add cover type', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let updateCoverType = (oldName, name) => {
-    let coverTypeId = state.contentPage.coverTypes.find(ps => ps.name === oldName).id
+    let coverTypeId = store.getState().contentPage.coverTypes.find(ps => ps.name === oldName).id
     let coverType = {
         id: coverTypeId,
         name
@@ -31,14 +31,14 @@ export let updateCoverType = (oldName, name) => {
         console.log('update cover type', response);
     })
 
-    initializeData();
+    store.initializeData();
 }
 
 export let deleteCoverType = (name) => {
-    let coverTypeId = state.contentPage.coverTypes.find(ps => ps.name === name).id
+    let coverTypeId = store.getState().contentPage.coverTypes.find(ps => ps.name === name).id
 
     axios.delete(combineUrl(controllerName) + '/' + coverTypeId).then(response => {
         console.log('delete cover type', response);
     })
-    initializeData();
+    store.initializeData();
 }

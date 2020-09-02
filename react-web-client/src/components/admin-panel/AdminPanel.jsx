@@ -15,7 +15,7 @@ const AdminPanel = (props) => {
         <div className="admin-panel">
             <div className="admin-panel-content">
                 <div className="painter-style-panel">
-                    <PainterStyleForm painterStyleMethods={props.props.painterStyleMethods} state={props.props} />
+                    <PainterStyleForm dispatch={props.props.dispatch} painterStyleMethods={props.props.painterStyleMethods} state={props.props} />
                 </div>
                 <div className="painter-panel">
                     <PainterForm painterMethods={props.props.painterMethods} />

@@ -30,20 +30,22 @@ class Login extends Component {
         return (
             <div className="add-form">
                 <h3>Login</h3>
-                <div>
-                    <input className="input" ref={this.name} placeholder="Логин" />
-                </div>
-                <div>
-                    <input className="input" type="password" ref={this.password} placeholder="Пароль" />
-                </div>
-                <button className="title-btn">
-                    <NavLink to="/register">Register</NavLink>
-                    {/* <Route path='/register' render={() => <Bestsellers filter="catalog" books={props.content.books} />} /> */}
-                </button>
-                <div className="action-buttons">
-                    <button className="button" onClick={this.login}>Login</button>
-                    <button className="button" onClick={this.clear}>Clear</button>
-                </div>
+                <form>
+                    <div>
+                        <input className="input" ref={this.name} placeholder="Логин" />
+                    </div>
+                    <div>
+                        <input className="input" type="password" ref={this.password} placeholder="Пароль" />
+                    </div>
+                    <button className="title-btn">
+                        <NavLink to="/register">Register</NavLink>
+                        {/* <Route path='/register' render={() => <Bestsellers filter="catalog" books={props.content.books} />} /> */}
+                    </button>
+                    <div className="action-buttons">
+                        <button className="button" onClick={this.login}>Login</button>
+                        <button className="button" onClick={this.clear}>Clear</button>
+                    </div>
+                </form>
             </div >
         );
     }
